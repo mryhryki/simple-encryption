@@ -1,0 +1,17 @@
+{
+  "name": "@mryhryki/simple-encryption",
+  "version": "0.1.0",
+  "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "simple",
+    "encryption",
+    "decryption",
+    "crypto"
+  ],
+  "author": "mryhryki",
+  "license": "MIT"
+}
