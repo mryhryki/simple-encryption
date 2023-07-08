@@ -3,8 +3,14 @@
   "version": "0.1.0",
   "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "main": "index.js",
+  "engines": {
+    "node": ">=16",
+    "deno": ">=1.17"
+  },
   "scripts": {
-    "test": "test"
+    "test": "deno test ./src/",
+    "fmt": "deno fmt ./src/",
+    "check": "deno check ./src/index.ts"
   },
   "keywords": [
     "simple",
