@@ -1,24 +1,29 @@
 const HexCharacters = "0123456789abcdef";
 
-export const convHexToBin = (hex: string): Uint8Array => {
-  const results: number[] = [];
+const toBin = (hex: string): Uint8Array => {
+  if (typeof hex !== "string") {
+    throw new Error('"hex" value is not string');
+  }
   if (hex.length % 2 !== 0) {
     throw new Error('"hex" value length must be a multiple of 2');
   }
+  const matches = hex.match(new RegExp(`[^${HexCharacters}]`, "g"));
+  if (matches != null) {
+    throw new Error(`Invalid hex characters: ${matches.join(",")}`);
+  }
+
+  const results: number[] = [];
   for (let p = 0; p < hex.length; p += 2) {
-    const num = parseInt(hex.substring(p, p + 2), HexCharacters.length);
-    if (isNaN(num)) {
-      throw new Error(
-        `Invalid hex characters: [${hex.substring(p, p + 2)}] at ${p}`,
-      );
-    }
-    results.push(num);
+    results.push(parseInt(hex.substring(p, p + 2), HexCharacters.length));
   }
   return new Uint8Array(results);
 };
 
-export const convBinToHex = (bin: Uint8Array): string =>
-  Array.from(bin)
+const fromBin = (bin: Uint8Array): string => {
+  if (!(bin instanceof Uint8Array)) {
+    throw new Error('"bin" is not Uint8Array');
+  }
+  return Array.from(bin)
     .map((n: number): string =>
       [
         HexCharacters.at(Math.floor(n / HexCharacters.length)), //
@@ -26,3 +31,6 @@ export const convBinToHex = (bin: Uint8Array): string =>
       ].join("")
     )
     .join("");
+};
+
+export const Hex = { toBin, fromBin };
