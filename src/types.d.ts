@@ -1,5 +1,5 @@
 declare namespace SimpleEncryption {
-  type SupportAlgorithm = "AES-CTR" | "AES-CBC" | "AES-GCM" | "AES-KW";
+  type SupportAlgorithm = "AES-GCM" | "AES-CBC";
 
   interface EncryptedData {
     alg: SupportAlgorithm;
