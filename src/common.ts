@@ -1,5 +1,3 @@
-import { convHexToBin } from "./hex.ts";
-
 export const DefaultAlg: Readonly<SimpleEncryption.SupportAlgorithm> =
   "AES-GCM" as const;
 
