@@ -8,10 +8,16 @@ export const encrypt = async (
 ): Promise<SimpleEncryption.EncryptedData> => {
   const alg: SimpleEncryption.SupportAlgorithm = args.alg ?? DefaultAlg;
   const plainData: Uint8Array = toUint8Array(args.plainData);
-  const iv: Uint8Array = typeof (args.iv) === "string" ? convHexToBin(args.iv) : toUint8Array(args.iv ?? getRandomBytes(16, crypto));
+  const iv: Uint8Array = typeof (args.iv) === "string"
+    ? convHexToBin(args.iv)
+    : toUint8Array(args.iv ?? getRandomBytes(16, crypto));
   const key: CryptoKey = await getKey(toUint8Array(args.key), alg);
 
-  const encryptedData: ArrayBuffer = await crypto.subtle.encrypt({ name: alg, iv }, key, plainData);
+  const encryptedData: ArrayBuffer = await crypto.subtle.encrypt(
+    { name: alg, iv },
+    key,
+    plainData,
+  );
   return {
     alg,
     data: convBinToHex(new Uint8Array(encryptedData)),
@@ -28,6 +34,10 @@ export const decrypt = async (
   const iv: Uint8Array = convHexToBin(args.iv);
   const key: CryptoKey = await getKey(toUint8Array(args.key), alg);
 
-  const plainData: ArrayBuffer = await crypto.subtle.decrypt({ name: alg, iv }, key, encryptedData);
+  const plainData: ArrayBuffer = await crypto.subtle.decrypt(
+    { name: alg, iv },
+    key,
+    encryptedData,
+  );
   return new Uint8Array(plainData);
 };
