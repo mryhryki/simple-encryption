@@ -1,4 +1,4 @@
-**NOTICE: This library is under implementing**
+⚠️⚠️⚠️ **NOTICE: This library is under implementing** ⚠️⚠️⚠️
 
 # @mryhryki/simple-encryption
 
