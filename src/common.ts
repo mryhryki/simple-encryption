@@ -18,6 +18,7 @@ export const toUint8Array = (
   return new TextEncoder().encode(val);
 };
 
+/** @see https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#raw_import */
 export const getKey = (key: Uint8Array, alg: string): Promise<CryptoKey> =>
   crypto.subtle.importKey("raw", key, alg, true, [
     "encrypt",
