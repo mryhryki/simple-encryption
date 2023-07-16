@@ -5,7 +5,9 @@ const toBin = (hex: string): Uint8Array => {
     throw new Error('"hex" value is not string');
   }
   if (hex.length % 2 !== 0) {
-    throw new Error('"hex" value length must be a multiple of 2');
+    throw new Error(
+      `"hex" value length must be a multiple of 2: ${hex} (Length: ${hex.length})`,
+    );
   }
   const matches = hex.match(new RegExp(`[^${HexCharacters}]`, "g"));
   if (matches != null) {

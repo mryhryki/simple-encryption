@@ -31,7 +31,10 @@ Deno.test("Hex", async (t) => {
       fail("Hex.toBin() is not thrown Error");
     } catch (err) {
       assert(err instanceof Error);
-      assertEquals(err.message, '"hex" value length must be a multiple of 2');
+      assertEquals(
+        err.message,
+        '"hex" value length must be a multiple of 2: abcde (Length: 5)',
+      );
     }
   });
 
