@@ -12,7 +12,7 @@ import {
   test_03_1_DecryptWithAesGcm,
   test_03_2_DecryptWithAesCbc,
 } from "./03_decrypt.ts";
-import { Test } from "./common.ts";
+import { Test, TestSubjects } from "./common.ts";
 
 const tests: Test[] = [
   test_01_1_FlowWithAesGcmWithIv,
@@ -25,7 +25,7 @@ const tests: Test[] = [
   test_03_2_DecryptWithAesCbc,
 ];
 
-export const test = async () => {
+export const test = async (testSubjects: TestSubjects) => {
   const testIds = tests.map((t) => t.id);
   if (testIds.length !== new Set(testIds).size) {
     throw new Error("Duplicate test id");
@@ -35,7 +35,7 @@ export const test = async () => {
 
   for await (const { name, func } of tests) {
     console.log(`Running test: ${name}`);
-    await func()
+    await func(testSubjects)
       .then(() => {
         console.log("  => OK");
       })
@@ -45,10 +45,8 @@ export const test = async () => {
       });
   }
 
-  console.log("")
+  console.log("");
   if (errorCount > 0) {
     throw new Error(`Tests failed: ${errorCount}/${tests.length}`);
   }
 };
-
-test();

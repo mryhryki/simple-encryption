@@ -13,8 +13,9 @@
     "build": "esbuild --bundle --platform=neutral --outfile=./dist/index.js ./src/index.ts",
     "check": "deno check ./src/index.ts",
     "fmt": "deno fmt ./src/",
-    "test": "deno test ./src/",
-    "test:deno": "deno run ./src/test/index.ts",
+    "prepare": "npm run build",
+    "test": "deno src/test ./src/",
+    "test:deno": "deno run src/test/index_deno.ts",
     "test:node": "esbuild --bundle --platform=node ./src/test/index_node.ts | node"
   },
   "keywords": [

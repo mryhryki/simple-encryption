@@ -1,4 +1,4 @@
-import { decrypt, encrypt } from "../index.ts";
+import { decrypt } from "../index.ts";
 import { assert, Test } from "./common.ts";
 
 const KEY = "baff33c10ccc04b5311ab47c96836a74";
@@ -33,7 +33,9 @@ export const test_03_2_DecryptWithAesCbc: Test = {
   func: () => dec(EncryptedDataWithAesCbc),
 };
 
-const dec = async (decryptArgs: SimpleEncryption.DecryptArgs): Promise<void> => {
+const dec = async (
+  decryptArgs: SimpleEncryption.DecryptArgs,
+): Promise<void> => {
   const decryptResult = await decrypt(decryptArgs);
   assert(decryptResult, new TextEncoder().encode(PlainData));
 };
