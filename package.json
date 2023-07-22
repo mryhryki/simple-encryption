@@ -15,7 +15,7 @@
     "fmt": "deno fmt ./src/",
     "test": "deno test ./src/",
     "test:deno": "deno run ./src/test/index.ts",
-    "test:node": "node -r esbuild-register ./src/test/index_node.ts"
+    "test:node": "esbuild --bundle --platform=node ./src/test/index_node.ts | node"
   },
   "keywords": [
     "simple",
@@ -26,7 +26,6 @@
   "author": "mryhryki",
   "license": "MIT",
   "devDependencies": {
-    "esbuild": "^0.18.15",
-    "esbuild-register": "^3.4.2"
+    "esbuild": "^0.18.15"
   }
 }
