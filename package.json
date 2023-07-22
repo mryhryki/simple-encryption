@@ -9,7 +9,7 @@
     "bun": ">=0.6"
   },
   "scripts": {
-    "build": ": TODO",
+    "build": "esbuild --bundle --platform=node --target=node16 --outfile=./dist/index.js ./src/index.ts",
     "check": "deno check ./src/index.ts",
     "fmt": "deno fmt ./src/",
     "test": "deno test ./src/",
