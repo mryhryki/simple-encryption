@@ -2,14 +2,15 @@
   "name": "@mryhryki/simple-encryption",
   "version": "0.0.1",
   "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
   "engines": {
     "node": ">=16",
     "deno": ">=1.17",
     "bun": ">=0.6"
   },
   "scripts": {
-    "build": "esbuild --bundle --platform=node --target=node16 --outfile=./dist/index.js ./src/index.ts",
+    "build": "esbuild --bundle --platform=neutral --outfile=./dist/index.js ./src/index.ts",
     "check": "deno check ./src/index.ts",
     "fmt": "deno fmt ./src/",
     "test": "deno test ./src/",
