@@ -9,6 +9,15 @@ Simple encryption/decryption library for Node.js/Deno/Browser.
 - No dependencies, Only use [Crypto](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
 - Easy to use without detailed knowledge for encryption (Please use a different library for complex usage)
 
+## Support Runtime
+
+- Node.js
+  - v16 Latest
+  - v18 Latest
+  - v20 Latest
+- Deno
+- Browser
+
 ## Supported Algorithm
 
 You can use these algorithm:

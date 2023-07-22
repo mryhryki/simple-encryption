@@ -10,6 +10,9 @@
   },
   "scripts": {
     "test": "deno test ./src/",
+    "test:node": "node -r esbuild-register ./src/test/index_node.ts",
+    "test:deno": "deno run ./src/test/index.ts",
+    "test:bun": "bun run ./src/test/index.ts",
     "fmt": "deno fmt ./src/",
     "check": "deno check ./src/index.ts"
   },
