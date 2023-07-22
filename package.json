@@ -1,6 +1,6 @@
 {
   "name": "@mryhryki/simple-encryption",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "main": "index.js",
   "engines": {
@@ -9,12 +9,12 @@
     "bun": ">=0.6"
   },
   "scripts": {
-    "test": "deno test ./src/",
-    "test:node": "node -r esbuild-register ./src/test/index_node.ts",
-    "test:deno": "deno run ./src/test/index.ts",
-    "test:bun": "bun run ./src/test/index.ts",
+    "build": ": TODO",
+    "check": "deno check ./src/index.ts",
     "fmt": "deno fmt ./src/",
-    "check": "deno check ./src/index.ts"
+    "test": "deno test ./src/",
+    "test:deno": "deno run ./src/test/index.ts",
+    "test:node": "node -r esbuild-register ./src/test/index_node.ts"
   },
   "keywords": [
     "simple",
