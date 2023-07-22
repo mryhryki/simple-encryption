@@ -1,13 +1,38 @@
 {
   "name": "@mryhryki/simple-encryption",
+  "main": "dist/index.js",
+  "type": "module",
+  "author": {
+    "name": "mryhryki",
+    "url": "https://github.com/mryhryki"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/mryhryki/simple-encryption",
+  "bugs": {
+    "url": "https://github.com/mryhryki/simple-encryption/issues"
+  },
   "version": "0.0.1",
   "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
-  "type": "module",
-  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "simple",
+    "encryption",
+    "decryption",
+    "crypto"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "engines": {
     "node": ">=16",
-    "deno": ">=1.17",
-    "bun": ">=0.6"
+    "deno": ">=1.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mryhryki/simple-encryption"
   },
   "scripts": {
     "build": "esbuild --bundle --platform=neutral --outfile=./dist/index.js ./src/index.ts",
@@ -19,14 +44,6 @@
     "test:node": "esbuild --bundle --platform=node ./src/test/index_node.ts | node",
     "test:node_with_packed_tarball": "npm pack && mv ./*.tgz ./packed.tgz && npm install ./packed.tgz && esbuild --bundle --platform=node ./src/test/index_node.ts | node"
   },
-  "keywords": [
-    "simple",
-    "encryption",
-    "decryption",
-    "crypto"
-  ],
-  "author": "mryhryki",
-  "license": "MIT",
   "devDependencies": {
     "esbuild": "^0.18.15"
   }
