@@ -4,7 +4,6 @@ import { Hex } from "./hex.ts";
 
 export const encrypt = async (
   args: SimpleEncryption.EncryptArgs,
-  crypto = window.crypto,
 ): Promise<SimpleEncryption.EncryptedData> => {
   const alg: SimpleEncryption.SupportAlgorithm = args.alg ?? DefaultAlg;
   const plainData: Uint8Array = toUint8Array(args.plainData);

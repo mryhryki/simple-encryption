@@ -1,3 +1,11 @@
+export const getCrypto = (): Crypto => {
+  if ("webcrypto" in globalThis.crypto) {
+    // Node.js
+    return globalThis.crypto.webcrypto;
+  }
+  return crypto;
+};
+
 export const DefaultAlg: Readonly<SimpleEncryption.SupportAlgorithm> =
   "AES-GCM" as const;
 
