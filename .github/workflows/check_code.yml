@@ -1,0 +1,25 @@
+name: check_code
+
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: Show environment
+        run: set -x; pwd; ls -la; deno --version;
+
+      - name: Test
+        run: deno test ./src/
+      - name: Check
+        run: deno check ./src/test/index.ts
+      - name: Format
+        run: deno fmt ./src/
