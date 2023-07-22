@@ -1,7 +1,7 @@
 export const getCrypto = (): Crypto => {
   if ("webcrypto" in globalThis.crypto) {
     // Node.js
-    return globalThis.crypto.webcrypto;
+    return globalThis.crypto.webcrypto as Crypto;
   }
   return crypto;
 };
@@ -15,16 +15,8 @@ export const getRandomBytes = (length: number, crypto: Crypto): Uint8Array => {
   return arr;
 };
 
-export const toUint8Array = (
-  val: string | Uint8Array | ArrayBuffer,
-): Uint8Array => {
-  if (val instanceof ArrayBuffer) {
-    return new Uint8Array(val);
-  } else if (val instanceof Uint8Array) {
-    return val;
-  }
-  return new TextEncoder().encode(val);
-};
+export const toUint8Array = (val: string): Uint8Array =>
+  new TextEncoder().encode(val);
 
 /** @see https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#raw_import */
 export const getKey = (key: Uint8Array, alg: string): Promise<CryptoKey> =>

@@ -1,20 +1,21 @@
 declare namespace SimpleEncryption {
+  type HexString = string;
   type SupportAlgorithm = "AES-GCM" | "AES-CBC";
 
   interface EncryptedData {
     alg: SupportAlgorithm;
-    data: string;
-    iv: string;
+    data: HexString;
+    iv: HexString;
   }
 
   interface DecryptArgs extends EncryptedData {
-    key: string | Uint8Array | ArrayBuffer;
+    key: HexString;
   }
 
   interface EncryptArgs {
     alg?: SupportAlgorithm | null;
-    iv?: string | Uint8Array | ArrayBuffer | null;
-    key: string | Uint8Array | ArrayBuffer;
-    plainData: string | Uint8Array | ArrayBuffer;
+    iv?: HexString | null;
+    key: HexString;
+    plainData: Uint8Array;
   }
 }
