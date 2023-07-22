@@ -1,4 +1,4 @@
 dist/
-mryhryki-simple-encryption-0.0.1.tgz
+*.tgz
 node_modules/
 package-lock.json
