@@ -15,7 +15,7 @@ await Promise.all(Algorithms.map(async (alg) => {
     };
 
     await t.step(`Encrypt: ${alg}`, async () => {
-      encryptResult = await encrypt({ alg, iv, key, plainData: sampleData });
+      encryptResult = await encrypt({ alg, iv, key, plainData: new TextEncoder().encode(sampleData) });
       assertEquals(encryptResult.alg, alg, "arg");
       assertEquals(encryptResult.iv, iv, "iv");
     });

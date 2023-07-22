@@ -23,5 +23,9 @@
     "crypto"
   ],
   "author": "mryhryki",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.18.15",
+    "esbuild-register": "^3.4.2"
+  }
 }
