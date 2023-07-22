@@ -34,9 +34,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          title: "Publish ${{ github.event.inputs.bump_type }}"
-          commit-message: "Publish ${{ github.event.inputs.bump_type }}"
-          branch: "bump-${{ github.event.inputs.bump_type }}"
+          title: "Bump ${{ github.event.inputs.bump_type }} version"
+          commit-message: "Bump ${{ github.event.inputs.bump_type }} version"
+          branch: "bump-${{ github.event.inputs.bump_type }}-version"
           delete-branch: true
           branch-suffix: timestamp
           reviewers: mryhryki
