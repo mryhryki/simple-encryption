@@ -6,8 +6,10 @@ Simple encryption/decryption library for Node.js/Deno/Browser.
 
 ## Concept
 
-- No dependencies, Only use [Crypto](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
-- Easy to use without detailed knowledge for encryption (Please use a different library for complex usage)
+- No dependencies, Only use
+  [Crypto](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
+- Easy to use without detailed knowledge for encryption (Please use a different
+  library for complex usage)
 
 ## Support Runtime
 
@@ -59,10 +61,10 @@ EOS
 ### Use in JavaScript
 
 ```javascript
-import { encrypt, decrypt } from "@mryhtyki"
+import { decrypt, encrypt } from "@mryhtyki";
 
-const key = "(Set generated secret key. Keep this value secret.)"
-const plainData = "(Set data that you want to encryption)"
+const key = "(Set generated secret key. Keep this value secret.)";
+const plainData = "(Set data that you want to encryption)";
 
 const encryptResult = await encrypt({ key, plainData });
 console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
@@ -73,7 +75,10 @@ console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 // }
 
 const decryptResult = await decrypt({ ...encryptResult, key });
-console.log("Decrypt Result is Uint8Array?:", decryptResult instanceof Uint8Array);
+console.log(
+  "Decrypt Result is Uint8Array?:",
+  decryptResult instanceof Uint8Array,
+);
 // Decrypt Result is Uint8Array?: true
 console.log("Decrypt Result:", JSON.stringify(decryptResult, null, 2));
 // Decrypt Result: {

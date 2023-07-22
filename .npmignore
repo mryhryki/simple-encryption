@@ -1,4 +1,7 @@
+.idea/
+.vscode/
 .github/
 .gitignore
+mryhryki-simple-encryption-0.0.1.tgz
 package-lock.json
 src/test/

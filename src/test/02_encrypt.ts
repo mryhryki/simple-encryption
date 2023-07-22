@@ -35,6 +35,11 @@ const enc = async (
   alg: SimpleEncryption.SupportAlgorithm,
   expectData: SimpleEncryption.EncryptedData,
 ): Promise<void> => {
-  const encryptResult = await encrypt({ alg, iv: IV, key: KEY, plainData: new TextEncoder().encode(PlainData) });
+  const encryptResult = await encrypt({
+    alg,
+    iv: IV,
+    key: KEY,
+    plainData: new TextEncoder().encode(PlainData),
+  });
   assert(encryptResult, expectData);
 };
