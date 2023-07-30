@@ -13,10 +13,7 @@ Simple encryption/decryption library for Node.js/Deno/Browser.
 
 ## Support Runtime
 
-- Node.js
-  - v16 Latest
-  - v18 Latest
-  - v20 Latest
+- Node.js ([LTS versions](https://github.com/nodejs/release#release-schedule): v16, v18, v20)
 - Deno
 - Browser
 
@@ -37,14 +34,17 @@ $ npm install @mryhryki/simple-encryption
 
 ### Generate Secret Key
 
+NOTICE: The generated secret key must be kept secret.
+
 ```shell
 # Generate by OpenSSL
-$ openssl rand -hex 16
+$ openssl rand -hex 32
+51bf5c934cc23e8498fdb636eed56c05fb0dc6d148a127a34c118b0fced1fc22 # Example Value (256 bits hex string)
 
 # Generate by Node.js
 cat << EOS | node
 const crypto = require("crypto");
-const arr = new Uint8Array(16);
+const arr = new Uint8Array(32);
 crypto.getRandomValues(arr);
 console.log(Buffer.from(arr).toString("hex"));
 EOS
@@ -52,7 +52,7 @@ EOS
 # Generate by Deno
 cat << EOS | deno
 import { encode } from "https://deno.land/std@0.193.0/encoding/hex.ts";
-const arr = new Uint8Array(16);
+const arr = new Uint8Array(32);
 crypto.getRandomValues(arr);
 console.log(new TextDecoder().decode(encode(arr)));
 EOS
@@ -61,10 +61,10 @@ EOS
 ### Use in JavaScript
 
 ```javascript
-import { decrypt, encrypt } from "@mryhtyki";
+import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 const key = "(Set generated secret key. Keep this value secret.)";
-const plainData = "(Set data that you want to encryption)";
+const plainData = new TextEncoder().encode("(Set data that you want to encryption)");
 
 const encryptResult = await encrypt({ key, plainData });
 console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
@@ -79,7 +79,7 @@ console.log(
   "Decrypt Result is Uint8Array?:",
   decryptResult instanceof Uint8Array,
 );
-// Decrypt Result is Uint8Array?: true
+// Decrypt Result is Uint8Array
 console.log("Decrypt Result:", JSON.stringify(decryptResult, null, 2));
 // Decrypt Result: {
 //  "0": 40,
