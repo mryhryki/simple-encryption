@@ -1,7 +1,12 @@
-declare module "@mryhryki/simple-encryption" {
-  export function encrypt(args: SimpleEncryption.EncryptArgs, crypto?: Crypto): Promise<SimpleEncryption.EncryptedData>;
-  export function decrypt(args: SimpleEncryption.DecryptArgs, crypto?: Crypto): Promise<SimpleEncryption.DecryptedData>;
-}
+declare function encrypt(
+  args: SimpleEncryption.EncryptArgs,
+  crypto?: Crypto,
+): Promise<SimpleEncryption.EncryptedData>;
+
+declare function decrypt(
+  args: SimpleEncryption.DecryptArgs,
+  crypto?: Crypto,
+): Promise<SimpleEncryption.DecryptedData>;
 
 declare namespace SimpleEncryption {
   type HexString = string;
