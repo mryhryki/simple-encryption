@@ -1,7 +1,7 @@
-// @deno-types="./types.d.ts"
 import { checkIvLength } from "./check.ts";
 import { DefaultAlg, getKey, getRandomBytes } from "./common.ts";
 import { Hex } from "./hex.ts";
+import { SimpleEncryption } from "./types.d.ts";
 
 export const encrypt = async (
   args: SimpleEncryption.EncryptArgs,

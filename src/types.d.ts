@@ -8,7 +8,7 @@ export declare function decrypt(
   crypto?: Crypto,
 ): Promise<SimpleEncryption.DecryptedData>;
 
-declare namespace SimpleEncryption {
+export namespace SimpleEncryption {
   type HexString = string;
   type SupportAlgorithm = "AES-GCM" | "AES-CBC";
 
