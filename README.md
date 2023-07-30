@@ -16,6 +16,7 @@ Simple encryption/decryption library for Node.js/Deno/Browser.
 - Node.js ([LTS versions](https://github.com/nodejs/release#release-schedule): v16, v18, v20)
 - Deno
 - Browser
+    - Tested on Chrome
 
 ## Supported Algorithm
 
@@ -25,12 +26,6 @@ You can use these algorithm:
 - `AES-CBC`
 
 ## How to Use
-
-### Install
-
-```shell
-$ npm install @mryhryki/simple-encryption
-```
 
 ### Generate Secret Key
 
@@ -58,27 +53,130 @@ console.log(new TextDecoder().decode(encode(arr)));
 EOS
 ```
 
-### Use in JavaScript
+### Use by Node.js
+
+Add `@mryhryki/simple-encryption` to your `package.json`:
+
+```shell
+$ npm install @mryhryki/simple-encryption
+```
+
+Set `"type": "module"` in your `package.json`.
+
+```shell
+# Check settings
+$ cat package.json | grep '"type":'
+  "type": "module",
+```
+
+Add `index.js` file:
 
 ```javascript
+// index.js
+import {webcrypto as crypto} from "crypto";
 import {decrypt, encrypt} from "@mryhryki/simple-encryption";
 
-// Set generated secret key (Hex string)
+(async () => {
+  const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
+  const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
+  const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
+
+  // Encrypt
+  const encryptResult = await encrypt({key, iv, plainData}, crypto);
+  console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
+
+  // Decrypt
+  const decryptResult = await decrypt({...encryptResult, key}, crypto);
+  console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
+})()
+```
+
+And run `index.js` by Node.js:
+
+```shell
+$ node ./index.js
+Encrypt Result: {
+  "alg": "AES-GCM",
+  "data": "955518aaedc18ed0a761d289a3a5fa91c69c003da99b11d1efa7282a0325d24049fe65fb67b6552d935a1a3407129120c00b9c47",
+  "iv": "a7dd2a80bd982113ba5fe7a77a6b22b7"
+}
+Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
+```
+
+### Use by Deno
+
+Add `index.js` file:
+
+```javascript
+// index.js
+import {decrypt, encrypt} from "npm:@mryhryki/simple-encryption";
+// or Using CDN
+// import { decrypt, encrypt } from "https://cdn.skypack.dev/@mryhryki/simple-encryption";
+// import { decrypt, encrypt } from "https://esm.sh/@mryhryki/simple-encryption";
+
 const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
-// Set data that you want to encryption (Uint8Array)
+const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
 const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
-const encryptResult = await encrypt({ key, plainData });
+// Encrypt
+const encryptResult = await encrypt({key, iv, plainData});
 console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
-// Encrypt Result: {
-//   "alg": "AES-GCM",
-//   "data": "4b26dbb5489924f31d4a3377b8310e8673c053bb23a47b1f72ad2de58ddbdbb1dab731fff2b1308027b02e0b82658d026c34ebcb",
-//   "iv": "b39eb660f1e7cdfbdf3e73381de5a316"
-// }
 
-const decryptResult = await decrypt({ ...encryptResult, key });
+// Decrypt
+const decryptResult = await decrypt({...encryptResult, key});
 console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
-// Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
+```
+
+And run `index.js` by Deno:
+
+```shell
+$ deno run ./index.js
+Encrypt Result: {
+  "alg": "AES-GCM",
+  "data": "955518aaedc18ed0a761d289a3a5fa91c69c003da99b11d1efa7282a0325d24049fe65fb67b6552d935a1a3407129120c00b9c47",
+  "iv": "a7dd2a80bd982113ba5fe7a77a6b22b7"
+}
+Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
+```
+
+### Use by Browser
+
+Add `index.js` file:
+
+```javascript
+(async () => {
+  const {encrypt, decrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption")
+
+  const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
+  const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
+  const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
+
+  // Encrypt
+  const encryptResult = await encrypt({key, iv, plainData}, crypto);
+  console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
+
+  // Decrypt
+  const decryptResult = await decrypt({...encryptResult, key}, crypto);
+  console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
+})()
+```
+
+Add HTML file and import `index.js` by `<script>` tag:
+
+```html
+<!-- index.html -->
+<script src="./index.js"></script>
+```
+
+Open `index.html` by Browser and check that the following logs are output to the Developer Tools Console:
+
+```plaintext
+Encrypt Result: {
+  "alg": "AES-GCM",
+  "data": "955518aaedc18ed0a761d289a3a5fa91c69c003da99b11d1efa7282a0325d24049fe65fb67b6552d935a1a3407129120c00b9c47",
+  "iv": "a7dd2a80bd982113ba5fe7a77a6b22b7"
+}
+index.js:14 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ```
 
 ## API
