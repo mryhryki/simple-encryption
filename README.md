@@ -1,6 +1,6 @@
 # @mryhryki/simple-encryption
 
-Simple encryption/decryption library for Node.js/Deno/Browser.
+Simple encryption/decryption library for Node.js/Deno/Bun/Browser.
 
 ## Concept
 
@@ -37,6 +37,8 @@ You can use these algorithm:
 - `AES-GCM` (Default, Recommended)
 - `AES-CBC`
 
+
+
 ## How to Use
 
 ### Generate Secret Key
@@ -64,6 +66,8 @@ crypto.getRandomValues(arr);
 console.log(new TextDecoder().decode(encode(arr)));
 EOS
 ```
+
+
 
 ### Use by [Node.js](https://nodejs.org/)
 
@@ -115,6 +119,8 @@ Encrypt Result: {
 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ```
 
+
+
 ### Use by [Deno](https://deno.land/)
 
 Add `index.js` file:
@@ -150,6 +156,44 @@ Encrypt Result: {
 }
 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ```
+
+
+### Use by [Bun](https://bun.sh/)
+
+Add `index.js` file:
+
+```javascript
+// index.js
+import { decrypt, encrypt } from "@mryhryki/simple-encryption";
+
+(async () => {
+  const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
+  const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
+  const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
+
+  // Encrypt
+  const encryptResult = await encrypt({ key, iv, plainData });
+  console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
+
+  // Decrypt
+  const decryptResult = await decrypt({ ...encryptResult, key });
+  console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
+})();
+```
+
+And run `index.js` by Bun:
+
+```shell
+$ bun ./index.js
+Encrypt Result: {
+  "alg": "AES-GCM",
+  "data": "955518aaedc18ed0a761d289a3a5fa91c69c003da99b11d1efa7282a0325d24049fe65fb67b6552d935a1a3407129120c00b9c47",
+  "iv": "a7dd2a80bd982113ba5fe7a77a6b22b7"
+}
+Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
+```
+
+
 
 ### Use by Browser
 
@@ -195,6 +239,8 @@ Encrypt Result: {
 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ```
 
+
+
 ## API
 
 ### encrypt()
@@ -236,6 +282,8 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 | Name        | Type         | Description     |
 |-------------|--------------|-----------------|
 | `plainData` | `Uint8Array` | Decrypted data. |
+
+
 
 ## Development
 
