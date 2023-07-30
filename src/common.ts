@@ -1,3 +1,5 @@
+import { SimpleEncryption } from "./types.d.ts";
+
 export const DefaultAlg: Readonly<SimpleEncryption.SupportAlgorithm> =
   "AES-GCM" as const;
 
