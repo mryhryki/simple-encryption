@@ -31,6 +31,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+          git switch -c "bump-$(date +'%Y%m%d-%H%M%S')"
       - name: Update version
         run: npm version ${{ github.event.inputs.bump_type }}
       - name: Set AuthToken for npmjs.com
@@ -40,11 +41,7 @@ jobs:
       - name: Publish to npmjs.com
         run: npm publish
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          title: "Bump ${{ github.event.inputs.bump_type }} version"
-          commit-message: "Bump ${{ github.event.inputs.bump_type }} version"
-          branch: "bump-${{ github.event.inputs.bump_type }}-version"
-          delete-branch: true
-          branch-suffix: timestamp
-          reviewers: mryhryki
+        run: |
+          git push origin "${BRANCH}"
+          git push --tags
+          gh pr create --title "Bump ${{ github.event.inputs.bump_type }} version" --reviewer "mryhryki" || true
