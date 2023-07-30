@@ -1,0 +1,19 @@
+name: check_bun
+
+on: push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Show environment
+        run: set -x; pwd; ls -la; bun --version;
+      - name: Run test
+        run: bun ./src/test/index_bun.ts
