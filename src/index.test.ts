@@ -38,8 +38,8 @@ await Promise.all(Algorithms.map(async (alg) => {
 
 // Deno.test("Compatibility", async (t) => {
 //   const PlainData = "RMQc7sORwEpfXljFKRdp5mxlaAOvsndumTsAt3IvPLAb6L15hZ9wWX8pDkm9EHNE1dVsGvy01AiiOaVUltKKrK2SBJrtzhzywunE";
-//   const EncryptData = "5e856e41db1adf321ea09b517e1328fc0fb0102edf48287497d00a05324f435f3e3f437b2295bed3b47a1651675ec85700a0aa47ddaef947e1d4051d2db063958d4bc4d50262606c486d95091e9082fe90d98af1a0f669e833f9b1fcba96229ba59fe9565371f88e76d7631a3b28e290";
-//   const Key = "542a72b41e203b71c7f62c6be6b9bd41";
+//   const EncryptData = "8c0310307c7928ac3d9a1dc54b18bc35e7f73e4d85c2f3271d53a38efafd19850171efb525060e860c0fe01cd363dad53573ed1c7dd01c3d845e5cd65017628e7ecfbf96449ad4c06f69d9e69d87afaf01a64875a4f48339973b60ca1493a7783ef9e1ee9f06c8270f41c6cb08d23959";
+//   const Key = "b940fe16e9d74d4ad66686d6345b16db742279983af0a38f7fbfc3fcdb3195d8";
 //   const IV = "55bb4e5f8996d0a9e6a8a62c5adcff5b";
 //
 //   await t.step(`printf '${PlainData}' | openssl aes-256-cbc -K "${Key}" -iv "${IV}" -nosalt | xxd -p`, async () => {

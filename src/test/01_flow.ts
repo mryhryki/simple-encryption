@@ -47,9 +47,9 @@ const flow = async ({ encrypt, decrypt, alg, iv }: FlowArgs): Promise<void> => {
     assert(encryptResult.iv, iv);
   }
 
-  const decryptResult = await decrypt({ ...encryptResult, key: KEY });
+  const {plainData} = await decrypt({ ...encryptResult, key: KEY });
   assert(
-    new TextDecoder().decode(decryptResult),
+    new TextDecoder().decode(plainData),
     PlainData,
   );
 };
