@@ -2,7 +2,7 @@
   "name": "@mryhryki/simple-encryption",
   "version": "0.0.4",
   "main": "dist/index.js",
-  "types": "src/index.d.ts",
+  "types": "src/types.d.ts",
   "type": "module",
   "author": {
     "name": "mryhryki",
