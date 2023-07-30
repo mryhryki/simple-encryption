@@ -68,7 +68,7 @@ const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; 
 // Set data that you want to encryption (Uint8Array)
 const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
-const encryptResult = await encrypt({key, plainData});
+const encryptResult = await encrypt({ key, plainData });
 console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 // Encrypt Result: {
 //   "alg": "AES-GCM",
@@ -76,19 +76,14 @@ console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 //   "iv": "b39eb660f1e7cdfbdf3e73381de5a316"
 // }
 
-const decryptResult = await decrypt({...encryptResult, key});
-console.log(
-  "Decrypt Result is Uint8Array?:",
-  decryptResult instanceof Uint8Array,
-);
-// Decrypt Result is Uint8Array?: true
-console.log("Decrypt Result:", new TextDecoder().decode(decryptResult)); // Use TextDecoder if you want to decrypt as string
+const decryptResult = await decrypt({ ...encryptResult, key });
+console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
 // Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ```
 
 ## API
 
-### `encrypt`
+### encrypt()
 
 #### Arguments
 
@@ -109,7 +104,7 @@ console.log("Decrypt Result:", new TextDecoder().decode(decryptResult)); // Use 
 | `data` | `string` (Hex) | Encrypted data.                                                                 |
 | `iv`   | `string` (Hex) | Initial vector. Use when decryption. Same value as `args.alg` if you specified. |
 
-### `decrypt`
+### decrypt()
 
 #### Arguments
 
