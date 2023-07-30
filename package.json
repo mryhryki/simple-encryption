@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/mryhryki/simple-encryption/issues"
   },
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "publishConfig": {
     "access": "public"
