@@ -1,6 +1,6 @@
 import { assert, DecryptFunc, EncryptFunc, Test } from "./common.ts";
 
-const KEY = "314560f0574292fabeccc32a39de7f28";
+const KEY = "2dc4104a50a08a41f53d3a6f10700f9660833ad2b369660ad24aa8cbf1657544";
 const IV = "c3b21a40f02858c45853f369143d0b44";
 const PlainData = "3b461ac2-05d1-406a-9214-d835e42c27cd";
 
