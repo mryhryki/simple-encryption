@@ -11,6 +11,11 @@ Simple encryption/decryption library for Node.js/Deno/Browser.
 - Easy to use without detailed knowledge for encryption (Please use a different
   library for complex usage)
 
+## Demo Page (Browser)
+
+- Encrypt: https://mrhyryki.github.io//simple-encryption/encrypt.html
+- Decrypt: https://mrhyryki.github.io//simple-encryption/decrypt.html
+
 ## Support Runtime
 
 - Node.js ([LTS versions](https://github.com/nodejs/release#release-schedule): v16, v18, v20)
