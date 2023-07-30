@@ -44,4 +44,4 @@ jobs:
         run: |
           git push origin "${BRANCH}"
           git push --tags
-          gh pr create --title "Bump ${{ github.event.inputs.bump_type }} version" --reviewer "mryhryki" || true
+          gh pr create --title "Bump ${{ github.event.inputs.bump_type }} version" --body "-" --reviewer "mryhryki" || true
