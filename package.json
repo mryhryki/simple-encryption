@@ -1,5 +1,6 @@
 {
   "name": "@mryhryki/simple-encryption",
+  "version": "0.0.4",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
   "type": "module",
@@ -12,7 +13,6 @@
   "bugs": {
     "url": "https://github.com/mryhryki/simple-encryption/issues"
   },
-  "version": "0.0.4",
   "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "publishConfig": {
     "access": "public"
