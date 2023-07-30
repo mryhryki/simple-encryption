@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Encrypt by @mryhryki/simple-encryption</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        main {
+            margin: 0 auto;
+            max-width: 960px;
+            padding: 1rem;
+        }
+
+        label {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+        }
+
+        input[type="text"], textarea {
+            padding: 0.5rem;
+            display: block;
+            flex-grow: 1;
+            width: 100%;
+        }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Encrypt by @mryhryki/simple-encryption</h1>
+      <form id="encryption-form">
+        <p>
+          <label>
+            <div>Secret Key (Required)</div>
+            <input id="secret-key" type="text"/>
+          </label>
+          <button type="button" id="generate-secret-key">Generate random</button>
+        </p>
+        <p>
+          <label>
+            <div>Initial Vector (Optional)</div>
+            <input id="initial-vector" type="text"/>
+          </label>
+          <button type="button" id="generate-initial-vector">Generate random</button>
+        </p>
+        <p>
+          <label>
+            <div>Plain Text</div>
+            <textarea id="plain-text" rows="10" cols="50"></textarea>
+          </label>
+          <button type="button" id="generate-plain-text">Append random UUID</button>
+        </p>
+        <p>
+          <input type="submit" value="ENCRYPT"/>
+        </p>
+      </form>
+      <p>
+        <label>
+          <div>Encrypted Data</div>
+          <textarea id="encrypted-data" rows="10" cols="50" disabled></textarea>
+        </label>
+      </p>
+    </main>
+
+    <script id="elements">
+      const secretKeyInput = document.getElementById("secret-key")
+      const generateSecretKeyButton = document.getElementById("generate-secret-key")
+      generateSecretKeyButton.addEventListener("click", () => {
+        secretKeyInput.value = randomHex(64)
+      })
+
+      const initialVectorInput = document.getElementById("initial-vector")
+      const generateInitialVectorButton = document.getElementById("generate-initial-vector")
+      generateInitialVectorButton.addEventListener("click", () => {
+        initialVectorInput.value = randomHex(32)
+      })
+
+      const plainTextInput = document.getElementById("plain-text")
+      const generatePlainTextButton = document.getElementById("generate-plain-text")
+      generatePlainTextButton.addEventListener("click", () => {
+        plainTextInput.value = `${plainTextInput.value}${crypto.randomUUID()}\n`
+      })
+
+      const encryptedDataInput = document.getElementById("encrypted-data")
+
+      const encryptionForm = document.getElementById("encryption-form")
+      encryptionForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const key = secretKeyInput.value.trim()
+        const iv = initialVectorInput.value.trim() || randomHex(32)
+        const text = plainTextInput.value.trim()
+
+        if (key === '') return alert('Secret Key is required')
+        if (text === '') return alert('Plain Text is required');
+
+        encrypt({alg: "AES-GCM", key, iv, text})
+          .then((result) => {
+            encryptedDataInput.value = JSON.stringify(result, null, 2)
+          })
+          .catch(alert)
+      })
+    </script>
+
+    <script id="common">
+      const HexCharacters = "0123456789abcdef";
+      const randomHex = (length) => {
+        const array = new Uint8Array(length / 2)
+        crypto.getRandomValues(array)
+        return Array.from(array).map((n) => [
+            HexCharacters.at(Math.floor(n / HexCharacters.length)), //
+            HexCharacters.at(n % HexCharacters.length),
+          ].join("")
+        ).join("");
+      }
+
+      const encrypt = async ({key, iv, text}) => {
+        const {encrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption")
+        return await encrypt({key, iv, plainData: new TextEncoder().encode(text)})
+      }
+
+      const decrypt = async ({alg, key, iv, encryptedData}) => {
+        const {decrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption")
+        return await decrypt({alg, key, iv, data: encryptedData})
+      }
+    </script>
+  </body>
+</html>
