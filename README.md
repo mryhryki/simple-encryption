@@ -1,6 +1,6 @@
 # @mryhryki/simple-encryption
 
-Simple encryption/decryption library for Node.js/Deno/Browser.
+Simple encryption/decryption library for Node.js/Deno/Bun/Browser.
 
 ## Concept
 

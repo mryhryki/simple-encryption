@@ -9,6 +9,15 @@
     "url": "https://github.com/mryhryki"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=16",
+    "deno": ">=1.17",
+    "bun": ">=0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mryhryki/simple-encryption"
+  },
   "homepage": "https://github.com/mryhryki/simple-encryption",
   "bugs": {
     "url": "https://github.com/mryhryki/simple-encryption/issues"
@@ -23,18 +32,6 @@
     "decryption",
     "crypto"
   ],
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=16",
-    "deno": ">=1.17"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mryhryki/simple-encryption"
-  },
   "scripts": {
     "build": "esbuild --bundle --platform=neutral --outfile=./dist/index.js ./src/index.ts",
     "check": "deno check ./src/test/index.ts",
