@@ -33,8 +33,8 @@ export const test = async (testSubjects: TestSubjects) => {
 
   let errorCount = 0;
 
-  for await (const { name, func } of tests) {
-    console.log(`Running test: ${name}`);
+  for await (const { id, name, func } of tests) {
+    console.log(`Running test: [${id}] ${name}`);
     await func(testSubjects)
       .then(() => {
         console.log("  => OK");
