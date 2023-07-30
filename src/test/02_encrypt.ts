@@ -8,14 +8,14 @@ const PlainData = "e8476638-38e4-47a8-9236-bf53d55aae13";
 const EncryptedDataWithAesGcm: SimpleEncryption.EncryptedData = {
   alg: "AES-GCM",
   data:
-    "556dccee7f7f72233db6812db8b5472b74e15e6738541c3bd9a605e10a9231f05ba299545acfa9ae479e36290c34410fb6d21cea",
+    "c2210c34ebc5259b2843409c74735ac59a1e2caf5940e83a0f6ca7d35d3711e18876eaf3bf997f8ad98638028b7e33bef6099da2",
   iv: IV,
 };
 
 const EncryptedDataWithAesCbc: SimpleEncryption.EncryptedData = {
   alg: "AES-CBC",
   data:
-    "865810ce318512a9e5b6eb3de96603a268581aceddf26db3139af27b15a110b6d8d21d8dca187284c8277b3dfca38f98",
+    "7bc4f92b6e0633f084023e4a1ead3c7cc95ec9d79fe34fe536e5c5c4d24c50eeecc34966a705157f2237fe202ddf6a70",
   iv: IV,
 };
 
