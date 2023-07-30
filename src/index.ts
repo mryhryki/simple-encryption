@@ -30,7 +30,7 @@ export const encrypt = async (
 export const decrypt = async (
   args: SimpleEncryption.DecryptArgs,
   crypto: Crypto = globalThis.crypto,
-): Promise<SimpleEncryption.DecryptData> => {
+): Promise<SimpleEncryption.DecryptedData> => {
   const { alg } = args;
   const encryptedData: Uint8Array = Hex.toBin(args.data);
   const iv: Uint8Array = checkIvLength(Hex.toBin(args.iv));
