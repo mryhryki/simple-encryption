@@ -1,3 +1,5 @@
+import { SimpleEncryption } from "../types.d.ts";
+
 export type EncryptFunc = (
   args: SimpleEncryption.EncryptArgs,
   crypto?: Crypto,

@@ -1,5 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.193.0/testing/asserts.ts";
 import { decrypt, encrypt } from "./index.ts";
+import { SimpleEncryption } from "./types.d.ts";
 
 const key = "314560f0574292fabeccc32a39de7f28";
 const iv = "c3b21a40f02858c45853f369143d0b44";

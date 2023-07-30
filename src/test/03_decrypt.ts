@@ -1,4 +1,5 @@
 import { decrypt } from "../index.ts";
+import { SimpleEncryption } from "../types.d.ts";
 import { assert, Test } from "./common.ts";
 
 const KEY = "b2880691b37d3e98417f59f6bbbc2704bc1f350e90f4c1c8d229a98e9086bac0";
