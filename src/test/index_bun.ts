@@ -1,4 +1,4 @@
-import { test } from "./index.ts";
-import { decrypt, encrypt } from "../index.ts";
+import { test } from "./index";
+import { decrypt, encrypt } from "../index";
 
 test({ encrypt, decrypt });
