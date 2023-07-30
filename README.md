@@ -13,13 +13,15 @@ Simple encryption/decryption library for Node.js/Deno/Browser.
 
 ## Demo Page (Browser)
 
-- Encrypt: https://mrhyryki.github.io//simple-encryption/encrypt.html
-- Decrypt: https://mrhyryki.github.io//simple-encryption/decrypt.html
+- [Encrypt](https://mryhryki.github.io/simple-encryption/encrypt.html)
+    - Source: [./docs/encrypt.html](./docs/encrypt.html)
+- [Decrypt](https://mryhryki.github.io/simple-encryption/encrypt.html)
+    - Source: [./docs/decrypt.html](./docs/decrypt.html)
 
 ## Support Runtime
 
-- Node.js ([LTS versions](https://github.com/nodejs/release#release-schedule): v16, v18, v20)
-- Deno
+- [Node.js](https://nodejs.org/) ([LTS versions](https://github.com/nodejs/release#release-schedule): v16, v18, v20)
+- [Deno](https://deno.land/)
 - Browser
     - Tested on Chrome
 
@@ -58,7 +60,7 @@ console.log(new TextDecoder().decode(encode(arr)));
 EOS
 ```
 
-### Use by Node.js
+### Use by [Node.js](https://nodejs.org/)
 
 Add `@mryhryki/simple-encryption` to your `package.json`:
 
@@ -108,7 +110,7 @@ Encrypt Result: {
 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ```
 
-### Use by Deno
+### Use by [Deno](https://deno.land/)
 
 Add `index.js` file:
 
@@ -151,17 +153,19 @@ Add `index.js` file:
 ```javascript
 (async () => {
   const {encrypt, decrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption")
+  // or
+  // const {encrypt, decrypt} = await import("https://esm.sh/@mryhryki/simple-encryption")
 
   const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
   const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
   const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
   // Encrypt
-  const encryptResult = await encrypt({key, iv, plainData}, crypto);
+  const encryptResult = await encrypt({key, iv, plainData});
   console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 
   // Decrypt
-  const decryptResult = await decrypt({...encryptResult, key}, crypto);
+  const decryptResult = await decrypt({...encryptResult, key});
   console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
 })()
 ```
@@ -170,7 +174,9 @@ Add HTML file and import `index.js` by `<script>` tag:
 
 ```html
 <!-- index.html -->
+...
 <script src="./index.js"></script>
+...
 ```
 
 Open `index.html` by Browser and check that the following logs are output to the Developer Tools Console:
@@ -203,7 +209,7 @@ index.js:14 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 
 | Name   | Type           | Description                                                                     |
 |--------|----------------|---------------------------------------------------------------------------------|
-| `alg`  | `string` (Hex) | Encrypt algorithm name. Same value as `args.alg` if you specified.              |
+| `alg`  | `string`       | Encrypt algorithm name. Same value as `args.alg` if you specified.              |
 | `data` | `string` (Hex) | Encrypted data.                                                                 |
 | `iv`   | `string` (Hex) | Initial vector. Use when decryption. Same value as `args.alg` if you specified. |
 
@@ -230,4 +236,4 @@ index.js:14 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 
 1. Install [Deno](https://deno.land/manual@v1.35.0/getting_started/installation)
 2. Editing source code.
-3. Run `deno test` to run test.
+3. Push to GitHub and create Pull Request. (CI will run test)
