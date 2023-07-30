@@ -36,6 +36,6 @@ export const test_03_2_DecryptWithAesCbc: Test = {
 const dec = async (
   decryptArgs: SimpleEncryption.DecryptArgs,
 ): Promise<void> => {
-  const decryptResult = await decrypt(decryptArgs);
-  assert(decryptResult, new TextEncoder().encode(PlainData));
+  const { plainData } = await decrypt(decryptArgs);
+  assert(new TextDecoder().decode(plainData), PlainData);
 };
