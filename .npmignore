@@ -3,4 +3,5 @@
 .gitignore
 .idea/
 .vscode/
+docs/
 package-lock.json
