@@ -39,10 +39,10 @@
     "check": "deno check ./src/index.ts",
     "fmt": "deno fmt ./src/",
     "prepare": "npm run build",
-    "test": "deno src/test ./src/",
+    "test": "deno test ./src/",
     "test:deno": "deno run src/test/index_deno.ts",
     "test:node": "esbuild --bundle --platform=node ./src/test/index_node.ts | node",
-    "test:node_with_packed_tarball": "npm pack && mv ./*.tgz ./packed.tgz && npm install ./packed.tgz && esbuild --bundle --platform=node ./src/test/index_node.ts | node"
+    "test:node_with_packed_tarball": "npm pack && mv ./mryhryki-simple-encryption-*.tgz ./packed.tgz && npm install ./packed.tgz && esbuild --bundle --platform=node ./src/test/index_node.ts | node"
   },
   "devDependencies": {
     "esbuild": "^0.18.15"
