@@ -44,7 +44,9 @@ jobs:
       - name: Create Pull Request
         run: |
           git push origin "${BRANCH}"
-          gh pr create --title "Bump ${{ github.event.inputs.bump_type }} version" --body "x" --reviewer "mryhryki" || true
+          gh pr create --title "Bump ${{ github.event.inputs.bump_type }} version" --body "x" --reviewer "mryhryki"
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Publish to npmjs.com
         run: npm publish
       - name: Push tag
