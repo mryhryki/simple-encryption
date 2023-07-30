@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Decrypt by @mryhryki/simple-encryption</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        main {
+            margin: 0 auto;
+            max-width: 960px;
+            padding: 1rem;
+        }
+
+        label {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+        }
+
+        select, input[type="text"], textarea {
+            padding: 0.5rem;
+            display: block;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+        }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Decrypt by <a href="https://github.com/mryhryki/simple-encryption" target="_blank" rel="noreferrer noopener">@mryhryki/simple-encryption</a></h1>
+      <form id="decryption-form">
+        <p>
+          <label>
+            <div>Crypt Algorithem</div>
+            <select id="crypt-algorithem">
+              <option value="AES-GCM">AES-GCM</option>
+              <option value="AES-CBC">AES-CBC</option>
+            </select>
+          </label>
+        </p>
+        <p>
+          <label>
+            <div>Secret Key (Required)</div>
+            <input id="secret-key" type="text"/>
+          </label>
+        </p>
+        <p>
+          <label>
+            <div>Initial Vector (Required)</div>
+            <input id="initial-vector" type="text"/>
+          </label>
+        </p>
+        <p>
+          <label>
+            <div>Encrypted Hex Text</div>
+            <textarea id="encrypted-hex-text" rows="10"></textarea>
+          </label>
+        </p>
+        <p style="text-align: center;">
+          <input type="submit" value="&#x1f513; DECRYPT"/>
+        </p>
+      </form>
+      <p>
+        <label>
+          <div>Plain Text</div>
+          <textarea id="plain-text" rows="10" disabled></textarea>
+        </label>
+      </p>
+    </main>
+
+    <script id="elements">
+      const cryptAlgorithemSelect = document.getElementById("crypt-algorithem")
+      const secretKeyInput = document.getElementById("secret-key")
+      const initialVectorInput = document.getElementById("initial-vector")
+      const encryptedHexTextInput = document.getElementById("encrypted-hex-text")
+      const plainTextInput = document.getElementById("plain-text")
+
+      const decryptionForm = document.getElementById("decryption-form")
+      decryptionForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const alg = cryptAlgorithemSelect.value
+        const key = secretKeyInput.value.trim()
+        const iv = initialVectorInput.value.trim()
+        const data = encryptedHexTextInput.value.trim()
+
+        if (alg === '') return alert('Crypt Algorithem is required')
+        if (key === '') return alert('Secret Key is required')
+        if (iv === '') return alert('Initial Vector is required')
+        if (data === '') return alert('Plain Text is required');
+
+        decrypt({alg, key, iv, data})
+          .then(({plainData}) => {
+            plainTextInput.value = new TextDecoder().decode(plainData)
+          })
+          .catch(alert)
+      })
+    </script>
+
+    <script id="common">
+      const decrypt = async ({alg, key, iv, data}) => {
+        const {decrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption")
+        return await decrypt({alg, key, iv, data: data})
+      }
+    </script>
+  </body>
+</html>

@@ -25,18 +25,33 @@
             width: 100vw;
         }
 
-        input[type="text"], textarea {
+        select, input[type="text"], textarea {
             padding: 0.5rem;
             display: block;
             flex-grow: 1;
             width: 100%;
         }
+
+        input[type="submit"] {
+            text-align: center;
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+        }
     </style>
   </head>
   <body>
     <main>
-      <h1>Encrypt by @mryhryki/simple-encryption</h1>
+      <h1>Encrypt by <a href="https://github.com/mryhryki/simple-encryption" target="_blank" rel="noreferrer noopener">@mryhryki/simple-encryption</a></h1>
       <form id="encryption-form">
+        <p>
+          <label>
+            <div>Crypt Algorithem</div>
+            <select id="crypt-algorithem">
+              <option value="AES-GCM">AES-GCM (Recommended)</option>
+              <option value="AES-CBC">AES-CBC</option>
+            </select>
+          </label>
+        </p>
         <p>
           <label>
             <div>Secret Key (Required)</div>
@@ -53,24 +68,26 @@
         </p>
         <p>
           <label>
-            <div>Plain Text</div>
-            <textarea id="plain-text" rows="10" cols="50"></textarea>
+            <div>Plain Text (Required)</div>
+            <textarea id="plain-text" rows="10"></textarea>
           </label>
           <button type="button" id="generate-plain-text">Append random UUID</button>
         </p>
-        <p>
-          <input type="submit" value="ENCRYPT"/>
+        <p style="text-align: center;">
+          <input type="submit" value="&#x1f510; ENCRYPT"/>
         </p>
       </form>
       <p>
         <label>
           <div>Encrypted Data</div>
-          <textarea id="encrypted-data" rows="10" cols="50" disabled></textarea>
+          <textarea id="encrypted-data" rows="10" disabled></textarea>
         </label>
       </p>
     </main>
 
     <script id="elements">
+      const cryptAlgorithemSelect = document.getElementById("crypt-algorithem")
+
       const secretKeyInput = document.getElementById("secret-key")
       const generateSecretKeyButton = document.getElementById("generate-secret-key")
       generateSecretKeyButton.addEventListener("click", () => {
@@ -95,14 +112,16 @@
       encryptionForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
+        const alg = cryptAlgorithemSelect.value
         const key = secretKeyInput.value.trim()
         const iv = initialVectorInput.value.trim() || randomHex(32)
         const text = plainTextInput.value.trim()
 
+        if (alg === '') return alert('Crypt Algorithem is required')
         if (key === '') return alert('Secret Key is required')
         if (text === '') return alert('Plain Text is required');
 
-        encrypt({alg: "AES-GCM", key, iv, text})
+        encrypt({alg, key, iv, text})
           .then((result) => {
             encryptedDataInput.value = JSON.stringify(result, null, 2)
           })
@@ -122,14 +141,9 @@
         ).join("");
       }
 
-      const encrypt = async ({key, iv, text}) => {
+      const encrypt = async ({alg, key, iv, text}) => {
         const {encrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption")
-        return await encrypt({key, iv, plainData: new TextEncoder().encode(text)})
-      }
-
-      const decrypt = async ({alg, key, iv, encryptedData}) => {
-        const {decrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption")
-        return await decrypt({alg, key, iv, data: encryptedData})
+        return await encrypt({alg, key, iv, plainData: new TextEncoder().encode(text)})
       }
     </script>
   </body>
