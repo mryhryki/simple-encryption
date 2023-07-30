@@ -131,4 +131,5 @@ console.log("Decrypt Result:", new TextDecoder().decode(decryptResult)); // Use 
 ## Development
 
 1. Install [Deno](https://deno.land/manual@v1.35.0/getting_started/installation)
-2. `(TODO)`
+2. Editing source code.
+3. Run `deno test` to run test.
