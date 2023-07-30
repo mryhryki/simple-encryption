@@ -1,9 +1,9 @@
-declare function encrypt(
+export declare function encrypt(
   args: SimpleEncryption.EncryptArgs,
   crypto?: Crypto,
 ): Promise<SimpleEncryption.EncryptedData>;
 
-declare function decrypt(
+export declare function decrypt(
   args: SimpleEncryption.DecryptArgs,
   crypto?: Crypto,
 ): Promise<SimpleEncryption.DecryptedData>;
