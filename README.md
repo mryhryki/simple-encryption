@@ -1,5 +1,3 @@
-⚠️⚠️⚠️ **NOTICE: This library is under implementing** ⚠️⚠️⚠️
-
 # @mryhryki/simple-encryption
 
 Simple encryption/decryption library for Node.js/Deno/Browser.
@@ -11,19 +9,21 @@ Simple encryption/decryption library for Node.js/Deno/Browser.
 - Easy to use without detailed knowledge for encryption (Please use a different
   library for complex usage)
 
+## License
+
+[MIT](./LICENSE)
+
 ## Demo Page (Browser)
 
-- [Encrypt](https://mryhryki.github.io/simple-encryption/encrypt.html)
-    - Source: [./docs/encrypt.html](./docs/encrypt.html)
-- [Decrypt](https://mryhryki.github.io/simple-encryption/encrypt.html)
-    - Source: [./docs/decrypt.html](./docs/decrypt.html)
+- [Encrypt](https://mryhryki.github.io/simple-encryption/encrypt.html) ([Source](./docs/encrypt.html))
+- [Decrypt](https://mryhryki.github.io/simple-encryption/decrypt.html) ([Source](./docs/decrypt.html))
 
 ## Support Runtime
 
 - [Node.js](https://nodejs.org/) ([LTS versions](https://github.com/nodejs/release#release-schedule): v16, v18, v20)
 - [Deno](https://deno.land/)
-- Browser
-    - Tested on Chrome
+- Browsers: Works that support [Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API),
+  but not tested.
 
 ## Supported Algorithm
 
@@ -187,7 +187,7 @@ Encrypt Result: {
   "data": "955518aaedc18ed0a761d289a3a5fa91c69c003da99b11d1efa7282a0325d24049fe65fb67b6552d935a1a3407129120c00b9c47",
   "iv": "a7dd2a80bd982113ba5fe7a77a6b22b7"
 }
-index.js:14 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
+Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ```
 
 ## API
@@ -196,14 +196,14 @@ index.js:14 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 
 #### Arguments
 
-| Name             | Type           | Required | Description                                                 |
-|------------------|----------------|----------|-------------------------------------------------------------|
-| `args`           | `object`       | Yes      | Arguments object.                                           |
-| `args.alg`       | `string`       | No       | Algorithm name: `AES-GCM` or `AES-CBC` (Default: `AES-GCM`) |
-| `args.iv`        | `string` (Hex) | No       | Initial vector.                                             |
-| `args.key`       | `string` (Hex) | Yes      | Your secret key.                                            |
-| `args.plainData` | `Uint8Array`   | Yes      | Plain data you want to encrypt.                             |
-| `crypto`         | Crypto         | No       | Crypto object. Required if using Node.js.                   |
+| Name             | Type                                                        | Required | Description                                                 |
+|------------------|-------------------------------------------------------------|----------|-------------------------------------------------------------|
+| `args`           | `object`                                                    | Yes      | Arguments object.                                           |
+| `args.alg`       | `string`                                                    | No       | Algorithm name: `AES-GCM` or `AES-CBC` (Default: `AES-GCM`) |
+| `args.iv`        | `string` (Hex)                                              | No       | Initial vector.                                             |
+| `args.key`       | `string` (Hex)                                              | Yes      | Your secret key.                                            |
+| `args.plainData` | `Uint8Array`                                                | Yes      | Plain data you want to encrypt.                             |
+| `crypto`         | [Crypto](https://developer.mozilla.org/docs/Web/API/Crypto) | No       | Crypto object. Required if using Node.js.                   |
 
 #### Return Value
 
@@ -217,14 +217,14 @@ index.js:14 Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 
 #### Arguments
 
-| Name        | Type           | Required | Description                                                                           |
-|-------------|----------------|----------|---------------------------------------------------------------------------------------|
-| `args`      | `object`       | Yes      | Arguments object.                                                                     |
-| `args.alg`  | `string`       | Yes      | Algorithm name: `AES-GCM` or `AES-CBC`. Must specify same value as during encryption. |
-| `args.data` | `string` (Hex) | Yes      | Encrypted data.                                                                       |
-| `args.iv`   | `string` (Hex) | Yes      | Initial vector. Must specify same value as during encryption.                         |
-| `args.key`  | `string` (Hex) | Yes      | Your secret key. Must specify same value as during encryption.                        |
-| `crypto`    | Crypto         | No       | Crypto object. Required if using Node.js.                                             |
+| Name        | Type                                                        | Required | Description                                                                           |
+|-------------|-------------------------------------------------------------|----------|---------------------------------------------------------------------------------------|
+| `args`      | `object`                                                    | Yes      | Arguments object.                                                                     |
+| `args.alg`  | `string`                                                    | Yes      | Algorithm name: `AES-GCM` or `AES-CBC`. Must specify same value as during encryption. |
+| `args.data` | `string` (Hex)                                              | Yes      | Encrypted data.                                                                       |
+| `args.iv`   | `string` (Hex)                                              | Yes      | Initial vector. Must specify same value as during encryption.                         |
+| `args.key`  | `string` (Hex)                                              | Yes      | Your secret key. Must specify same value as during encryption.                        |
+| `crypto`    | [Crypto](https://developer.mozilla.org/docs/Web/API/Crypto) | No       | Crypto object. Required if using Node.js.                                             |
 
 #### Return Value
 
