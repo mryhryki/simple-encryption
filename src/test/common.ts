@@ -6,7 +6,7 @@ export type EncryptFunc = (
 export type DecryptFunc = (
   args: SimpleEncryption.DecryptArgs,
   crypto?: Crypto,
-) => Promise<SimpleEncryption.DecryptData>;
+) => Promise<SimpleEncryption.DecryptedData>;
 
 export interface TestSubjects {
   encrypt: EncryptFunc;

@@ -1,6 +1,7 @@
 {
   "name": "@mryhryki/simple-encryption",
   "main": "dist/index.js",
+  "types": "src/index.d.ts",
   "type": "module",
   "author": {
     "name": "mryhryki",
