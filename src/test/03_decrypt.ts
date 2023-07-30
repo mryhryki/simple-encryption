@@ -1,8 +1,8 @@
 import { decrypt } from "../index.ts";
 import { assert, Test } from "./common.ts";
 
-const KEY = "baff33c10ccc04b5311ab47c96836a74";
-const IV = "42b2ec4982b3e429f3d49159478c380f";
+const KEY = "b2880691b37d3e98417f59f6bbbc2704bc1f350e90f4c1c8d229a98e9086bac0";
+const IV = "b2880691b37d3e98417f59f6bbbc2704bc1f350e90f4c1c8d229a98e9086bac0";
 const PlainData = "f022bb62-d10a-480b-be8a-000584596690";
 
 const EncryptedDataWithAesGcm: SimpleEncryption.DecryptArgs = {

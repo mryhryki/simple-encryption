@@ -1,7 +1,7 @@
 import { encrypt } from "../index.ts";
 import { assert, Test } from "./common.ts";
 
-const KEY = "19080d3b9b9375dc3f5fe51ab9a637ac";
+const KEY = "b2880691b37d3e98417f59f6bbbc2704bc1f350e90f4c1c8d229a98e9086bac0";
 const IV = "0e506606bf986f11f8582a736078725c";
 const PlainData = "e8476638-38e4-47a8-9236-bf53d55aae13";
 
