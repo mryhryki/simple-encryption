@@ -5,8 +5,8 @@ import { SimpleEncryption } from "./types.d.ts";
 
 export const encrypt = async (
   args: SimpleEncryption.EncryptArgs,
-  crypto: Crypto = globalThis.crypto,
 ): Promise<SimpleEncryption.EncryptedData> => {
+  const crypto: Crypto = args.crypto ?? globalThis.crypto;
   const alg: SimpleEncryption.SupportAlgorithm = args.alg ?? DefaultAlg;
   const plainData: Uint8Array = args.plainData;
   const key: CryptoKey = await getKey(Hex.toBin(args.key), alg, crypto);
@@ -29,8 +29,8 @@ export const encrypt = async (
 
 export const decrypt = async (
   args: SimpleEncryption.DecryptArgs,
-  crypto: Crypto = globalThis.crypto,
 ): Promise<SimpleEncryption.DecryptedData> => {
+  const crypto: Crypto = args.crypto ?? globalThis.crypto;
   const { alg } = args;
   const encryptedData: Uint8Array = Hex.toBin(args.data);
   const iv: Uint8Array = checkIvLength(Hex.toBin(args.iv));
