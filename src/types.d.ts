@@ -1,11 +1,9 @@
 export declare function encrypt(
   args: SimpleEncryption.EncryptArgs,
-  crypto?: Crypto,
 ): Promise<SimpleEncryption.EncryptedData>;
 
 export declare function decrypt(
   args: SimpleEncryption.DecryptArgs,
-  crypto?: Crypto,
 ): Promise<SimpleEncryption.DecryptedData>;
 
 export namespace SimpleEncryption {
@@ -17,12 +15,14 @@ export namespace SimpleEncryption {
     iv?: HexString | null;
     key: HexString;
     plainData: Uint8Array;
+    crypto?: Crypto;
   }
 
   interface EncryptedData {
     alg: SupportAlgorithm;
     data: HexString;
     iv: HexString;
+    crypto?: Crypto;
   }
 
   interface DecryptArgs extends EncryptedData {
