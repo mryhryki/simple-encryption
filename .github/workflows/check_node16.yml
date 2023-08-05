@@ -1,4 +1,4 @@
-name: check_node16
+name: check_node
 
 on: push
 
@@ -7,20 +7,28 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    strategy:
+      matrix:
+        node-version:
+          - 16
+          - 18
+          - 20
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - name: Update npm
-        run: npm install -g npm
+          node-version: ${{ matrix.node-version }}
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Install dependencies
         run: npm install
       - name: Run test
-        run: npm run test:node
+        run: esbuild --bundle --platform=node ./src/test/index_node.ts | node
       - name: Run test with packed tarball
-        run: npm run test:node_with_packed_tarball
+        run: |
+          npm pack
+          mv ./mryhryki-simple-encryption-*.tgz ./packed.tgz
+          npm install ./packed.tgz
+          esbuild --bundle --platform=node ./src/test/index_node_with_packed_tarball.ts | node
