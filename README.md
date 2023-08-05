@@ -196,7 +196,7 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 | Name        | Type                                                        | Required | Description                                                 |
 |-------------|-------------------------------------------------------------|----------|-------------------------------------------------------------|
 | `alg`       | `string`                                                    | No       | Algorithm name: `AES-GCM` or `AES-CBC` (Default: `AES-GCM`) |
-| `iv`        | `string` (Hex)                                              | No       | Initial vector.                                             |
+| `iv`        | `string` (Hex)                                              | No       | Initial vector. DON'T specify this if you don't need.       |
 | `key`       | `string` (Hex)                                              | Yes      | Your secret key.                                            |
 | `plainData` | `Uint8Array`                                                | Yes      | Plain data you want to encrypt.                             |
 | `crypto`    | [Crypto](https://developer.mozilla.org/docs/Web/API/Crypto) | No       | Crypto object. Required if using Node.js (<19.x).           |
