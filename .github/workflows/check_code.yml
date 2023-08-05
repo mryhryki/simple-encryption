@@ -19,8 +19,10 @@ jobs:
       - name: Check
         run: deno check --all ./src/index.ts
       - name: Lint
-        run: deno lint ./src/
+        run: deno task lint
       - name: Format
-        run: deno fmt --check ./src/
+        run: deno task format
       - name: Test
-        run: deno test ./src/
+        run: deno task test
+      - name: Build
+        run: deno task build
