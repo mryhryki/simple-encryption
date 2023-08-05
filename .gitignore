@@ -1,8 +1,7 @@
-*.tgz
+mryhryki-simple-encryption-*.tgz
 deno.lock
-dist/**
-node_modules/**
+node_modules/
 package-lock.json
-package/**
+package/
 src/index.js
 src/test/index.js
