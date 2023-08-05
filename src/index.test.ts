@@ -7,7 +7,7 @@ const iv = "c3b21a40f02858c45853f369143d0b44";
 const sampleData = "3b461ac2-05d1-406a-9214-d835e42c27cd";
 
 const Algorithms: SimpleEncryption.SupportAlgorithm[] = ["AES-GCM", "AES-CBC"];
-await Promise.all(Algorithms.map(async (alg) => {
+await Promise.all(Algorithms.map((alg) => {
   Deno.test(`Encrypt/Decrypt: ${alg}`, async (t) => {
     let encryptResult: SimpleEncryption.EncryptedData = {
       alg,
