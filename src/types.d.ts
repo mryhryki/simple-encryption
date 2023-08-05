@@ -15,6 +15,7 @@ export namespace SimpleEncryption {
     iv?: HexString | null;
     key: HexString;
     plainData: Uint8Array;
+    // TODO: Remove after EOL Node.js v18 (2025-05-01~)
     crypto?: Crypto;
   }
 
@@ -22,6 +23,7 @@ export namespace SimpleEncryption {
     alg: SupportAlgorithm;
     data: HexString;
     iv: HexString;
+    // TODO: Remove after EOL Node.js v18 (2025-05-01~)
     crypto?: Crypto;
   }
 
