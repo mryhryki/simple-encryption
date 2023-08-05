@@ -28,7 +28,9 @@ jobs:
         run: esbuild --bundle --platform=node ./src/test/index_node.ts | node
       - name: Run test with packed tarball
         run: |
+          set -xe
           npm pack
           mv ./mryhryki-simple-encryption-*.tgz ./packed.tgz
           npm install ./packed.tgz
-          esbuild --bundle --platform=node ./src/test/index_node_with_packed_tarball.ts | node
+          ./node_modules/.bin/esbuild --bundle --platform=node --outfile=./dist/test.js ./src/test/index_node_with_packed_tarball.ts
+          node ./dist/test.js
