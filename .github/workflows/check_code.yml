@@ -10,24 +10,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Show environment
-        run: set -x; pwd; ls -la; node -v; npm -v;
-      - name: Install dependencies
-        run: npm install
-
-      # TODO: Remove next step
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
+      - name: Show environment
+        run: set -x; pwd; ls -la; deno --version;
 
       - name: Check
         run: deno check --all ./src/index.ts
       - name: Lint
         run: deno lint ./src/
+      - name: Format
+        run: deno fmt ./src/
       - name: Test
         run: deno test ./src/
