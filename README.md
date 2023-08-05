@@ -69,6 +69,7 @@ $ npm install @mryhryki/simple-encryption
 ```
 
 Set `"type": "module"` in your `package.json`.
+(If you use bundler (webpack, esbuild, etc.), you may don't need to set this.)
 
 ```shell
 # Check settings
@@ -79,7 +80,11 @@ $ cat package.json | grep '"type":'
 Add `index.js` file:
 
 ```javascript
-// index.js
+// If you are using Node.js v19 and later, there is `crypto` in `globalThis`, you don't need to import crypto.
+//
+// Ref:
+// - https://github.com/nodejs/node/pull/42083
+// - https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V19.md#19.0.0
 import {webcrypto as crypto} from "crypto";
 import {decrypt, encrypt} from "@mryhryki/simple-encryption";
 
