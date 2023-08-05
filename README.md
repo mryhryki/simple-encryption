@@ -85,7 +85,6 @@ import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 (async () => {
   const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
-  const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
   const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
   // Encrypt
@@ -122,7 +121,6 @@ import { decrypt, encrypt } from "npm:@mryhryki/simple-encryption";
 // import { decrypt, encrypt } from "https://esm.sh/@mryhryki/simple-encryption";
 
 const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
-const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
 const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
 // Encrypt
@@ -157,7 +155,6 @@ Add `index.js` file:
   // const {encrypt, decrypt} = await import("https://esm.sh/@mryhryki/simple-encryption")
 
   const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
-  const iv = "a7dd2a80bd982113ba5fe7a77a6b22b7"; // Optional
   const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
   // Encrypt
