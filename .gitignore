@@ -1,7 +1,8 @@
-dist/
 *.tgz
-node_modules/
-package-lock.json
 deno.lock
+dist/**
+node_modules/**
+package-lock.json
+package/**
+src/index.js
 src/test/index.js
-package/
