@@ -1,6 +1,6 @@
-import { SimpleEncryption } from "./types.d.ts";
+import { SimpleEncryptionType } from "./types.d.ts";
 
-export const DefaultAlg: Readonly<SimpleEncryption.SupportAlgorithm> =
+export const DefaultAlg: Readonly<SimpleEncryptionType.SupportAlgorithm> =
   "AES-GCM" as const;
 
 export const getRandomBytes = (length: number, crypto: Crypto): Uint8Array => {

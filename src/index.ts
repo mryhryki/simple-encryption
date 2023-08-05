@@ -1,13 +1,13 @@
 import { checkIvLength } from "./check.ts";
 import { DefaultAlg, getKey, getRandomBytes } from "./common.ts";
 import { Hex } from "./hex.ts";
-import { SimpleEncryption } from "./types.d.ts";
+import { SimpleEncryptionType } from "./types.d.ts";
 
 export const encrypt = async (
-  args: SimpleEncryption.EncryptArgs,
-): Promise<SimpleEncryption.EncryptedData> => {
+  args: SimpleEncryptionType.EncryptArgs,
+): Promise<SimpleEncryptionType.EncryptedData> => {
   const crypto: Crypto = args.crypto ?? globalThis.crypto;
-  const alg: SimpleEncryption.SupportAlgorithm = args.alg ?? DefaultAlg;
+  const alg: SimpleEncryptionType.SupportAlgorithm = args.alg ?? DefaultAlg;
   const plainData: Uint8Array = args.plainData;
   const key: CryptoKey = await getKey(Hex.toBin(args.key), alg, crypto);
   const iv: Uint8Array = checkIvLength(
@@ -28,8 +28,8 @@ export const encrypt = async (
 };
 
 export const decrypt = async (
-  args: SimpleEncryption.DecryptArgs,
-): Promise<SimpleEncryption.DecryptedData> => {
+  args: SimpleEncryptionType.DecryptArgs,
+): Promise<SimpleEncryptionType.DecryptedData> => {
   const crypto: Crypto = args.crypto ?? globalThis.crypto;
   const { alg } = args;
   const encryptedData: Uint8Array = Hex.toBin(args.data);

@@ -1,12 +1,12 @@
 export declare function encrypt(
-  args: SimpleEncryption.EncryptArgs,
-): Promise<SimpleEncryption.EncryptedData>;
+  args: SimpleEncryptionType.EncryptArgs,
+): Promise<SimpleEncryptionType.EncryptedData>;
 
 export declare function decrypt(
-  args: SimpleEncryption.DecryptArgs,
-): Promise<SimpleEncryption.DecryptedData>;
+  args: SimpleEncryptionType.DecryptArgs,
+): Promise<SimpleEncryptionType.DecryptedData>;
 
-export namespace SimpleEncryption {
+export namespace SimpleEncryptionType {
   type HexString = string;
   type SupportAlgorithm = "AES-GCM" | "AES-CBC";
 
