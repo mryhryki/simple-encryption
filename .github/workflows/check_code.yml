@@ -26,11 +26,8 @@ jobs:
           deno-version: v1.x
 
       - name: Check
-        run: deno check ./src/test/index.ts
+        run: deno check --all ./src/index.ts
       - name: Lint
-        run: npm run lint
-        run: deno check ./src/index.ts
-      - name: Format
-        run: deno fmt ./src/
+        run: deno lint ./src/
       - name: Test
         run: deno test ./src/
