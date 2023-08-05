@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "build": "deno run --allow-env --allow-read --allow-write --allow-net ./src/bundle.ts",
+    "build": "deno run --allow-env --allow-read --allow-write --allow-net ./src/script/bundle.ts",
     "check": "deno check --all ./src/index.ts",
     "format": "deno fmt --check ./src/",
     "lint": "deno lint ./src/",
