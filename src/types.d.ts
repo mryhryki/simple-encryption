@@ -12,6 +12,8 @@ export namespace SimpleEncryption {
   type HexString = string;
   type SupportAlgorithm = "AES-GCM" | "AES-CBC";
 
+  // FIXME
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface EncryptArgs {
     alg?: SupportAlgorithm | null;
     iv?: HexString | null;
@@ -25,10 +27,14 @@ export namespace SimpleEncryption {
     iv: HexString;
   }
 
+  // FIXME
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface DecryptArgs extends EncryptedData {
     key: HexString;
   }
 
+  // FIXME
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface DecryptedData {
     plainData: Uint8Array;
   }
