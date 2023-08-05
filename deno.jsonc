@@ -1,6 +1,10 @@
 {
   "tasks": {
     "build": "deno run --allow-env=DENO_DIR,HOME,DENO_AUTH_TOKENS --allow-read --allow-write --allow-net ./src/bundle.ts",
-    "dev": "deno run --watch main.ts"
+    "check": "deno check --all ./src/index.ts",
+    "format": "deno fmt --check ./src/",
+    "lint": "deno lint ./src/",
+    "test": "deno test ./src/",
+    "test:watch": "deno test --watch ./src/"
   }
 }
