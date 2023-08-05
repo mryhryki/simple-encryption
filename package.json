@@ -33,9 +33,6 @@
     "crypto"
   ],
   "scripts": {
-    "check": "deno check ./src/test/index.ts",
-    "fmt": "deno fmt ./src/",
-    "prepare": "deno task build",
-    "test": "deno test ./src/"
+    "prepare": "deno task build"
   }
 }

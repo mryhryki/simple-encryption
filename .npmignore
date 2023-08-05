@@ -3,6 +3,7 @@
 .gitignore
 .idea/
 .vscode/
+deno.*
 docs/
 package-lock.json
-deno.*
+script/
