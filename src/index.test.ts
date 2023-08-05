@@ -1,15 +1,18 @@
 import { assertEquals } from "https://deno.land/std@0.193.0/testing/asserts.ts";
 import { decrypt, encrypt } from "./index.ts";
-import { SimpleEncryption } from "./types.d.ts";
+import { SimpleEncryptionType } from "./types.d.ts";
 
 const key = "314560f0574292fabeccc32a39de7f28";
 const iv = "c3b21a40f02858c45853f369143d0b44";
 const sampleData = "3b461ac2-05d1-406a-9214-d835e42c27cd";
 
-const Algorithms: SimpleEncryption.SupportAlgorithm[] = ["AES-GCM", "AES-CBC"];
+const Algorithms: SimpleEncryptionType.SupportAlgorithm[] = [
+  "AES-GCM",
+  "AES-CBC",
+];
 await Promise.all(Algorithms.map((alg) => {
   Deno.test(`Encrypt/Decrypt: ${alg}`, async (t) => {
-    let encryptResult: SimpleEncryption.EncryptedData = {
+    let encryptResult: SimpleEncryptionType.EncryptedData = {
       alg,
       data: "(DUMMY)",
       iv: "(DUMMY)",

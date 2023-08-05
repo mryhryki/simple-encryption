@@ -1,14 +1,14 @@
-import { SimpleEncryption } from "../types.d.ts";
+import { SimpleEncryptionType } from "../types.d.ts";
 
 export type EncryptFunc = (
-  args: SimpleEncryption.EncryptArgs,
+  args: SimpleEncryptionType.EncryptArgs,
   crypto?: Crypto,
-) => Promise<SimpleEncryption.EncryptedData>;
+) => Promise<SimpleEncryptionType.EncryptedData>;
 
 export type DecryptFunc = (
-  args: SimpleEncryption.DecryptArgs,
+  args: SimpleEncryptionType.DecryptArgs,
   crypto?: Crypto,
-) => Promise<SimpleEncryption.DecryptedData>;
+) => Promise<SimpleEncryptionType.DecryptedData>;
 
 export interface TestSubjects {
   encrypt: EncryptFunc;
