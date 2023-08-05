@@ -20,12 +20,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
-      - name: Install dependencies
-        run: npm install
-      - name: Run test
-        run: esbuild --bundle --platform=node ./src/test/index_node.ts | node
       - name: Run test with packed tarball
         run: |
           set -xe
