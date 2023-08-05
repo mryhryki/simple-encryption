@@ -15,6 +15,10 @@ Deno.test("Hex", async (t) => {
     assertEquals(HexBin.toString(), Hex.toBin(HexText).toString());
   });
 
+  await t.step("Hex.toBin(EmptyText)", () => {
+    assertEquals("", Hex.toBin("").toString());
+  });
+
   await t.step("Hex.toBin(InvalidText)", () => {
     try {
       Hex.toBin("abC12z");
