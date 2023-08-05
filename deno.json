@@ -3,8 +3,8 @@
     "build": "deno run --allow-env --allow-read --allow-write --allow-net ./script/bundle.ts",
     "build:test": "deno run --allow-env --allow-read --allow-write --allow-net ./script/bundle_test.ts",
     "check": "deno check --all ./src/index.ts",
-    "format": "deno fmt --check ./src/",
-    "lint": "deno lint ./src/",
+    "format": "deno fmt --check ./src/ ./script/",
+    "lint": "deno lint ./src/ ./script/",
     "test": "deno test ./src/",
     "test:watch": "deno test --watch ./src/"
   }
