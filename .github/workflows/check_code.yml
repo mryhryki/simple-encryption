@@ -16,12 +16,11 @@ jobs:
           deno-version: v1.x
       - name: Show environment
         run: set -x; pwd; ls -la; deno --version;
-
       - name: Check
         run: deno check --all ./src/index.ts
       - name: Lint
         run: deno lint ./src/
       - name: Format
-        run: deno fmt ./src/
+        run: deno fmt --check ./src/
       - name: Test
         run: deno test ./src/
