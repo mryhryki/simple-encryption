@@ -44,6 +44,7 @@ Deno.test("Hex", async (t) => {
 
   await t.step("Hex.toBin(Not string)", () => {
     try {
+      // deno-lint-ignore no-explicit-any
       Hex.toBin(1234 as any);
       fail("Hex.toBin() is not thrown Error");
     } catch (err) {
@@ -59,6 +60,7 @@ Deno.test("Hex", async (t) => {
   await t.step("Hex.fromBin(Not Uint8Array)", () => {
     assertEquals(HexText, Hex.fromBin(HexBin));
     try {
+      // deno-lint-ignore no-explicit-any
       Hex.fromBin(new Int8Array(4) as any);
       fail("Hex.fromBin() is not thrown Error");
     } catch (err) {
