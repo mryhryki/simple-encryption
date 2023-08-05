@@ -33,13 +33,9 @@
     "crypto"
   ],
   "scripts": {
-    "build": "esbuild --bundle --platform=neutral --outfile=./dist/index.js ./src/index.ts",
     "check": "deno check ./src/test/index.ts",
     "fmt": "deno fmt ./src/",
-    "prepare": "npm run build",
+    "prepare": "deno task build",
     "test": "deno test ./src/"
-  },
-  "devDependencies": {
-    "esbuild": "^0.18.15"
   }
 }
