@@ -32,5 +32,5 @@ jobs:
           npm pack
           TARBALL="$(ls -1 mryhryki-simple-encryption-*.tgz | head -n 1)"
           npm install "./${TARBALL}"
-          ./node_modules/.bin/esbuild --bundle --platform=node --outfile=./dist/test.js ./src/test/index_node_with_packed_tarball.ts
-          cat ./dist/test.js | node --input-type=commonjs
+          deno task build:test
+          node src/test/index_node.js
