@@ -40,7 +40,7 @@ Deno.test("Hex", async (t) => {
 
   await t.step("Hex.toBin(Not string)", () => {
     try {
-      Hex.toBin(1234 as any);
+      Hex.toBin(1234 as any); // eslint-disable-line @typescript-eslint/no-explicit-any
       fail("Hex.toBin() is not thrown Error");
     } catch (err) {
       assert(err instanceof Error);
@@ -55,11 +55,11 @@ Deno.test("Hex", async (t) => {
   await t.step("Hex.fromBin(Not Uint8Array)", () => {
     assertEquals(HexText, Hex.fromBin(HexBin));
     try {
-      Hex.fromBin(new Int8Array(4) as any);
+      Hex.fromBin(new Int8Array(4) as any);  // eslint-disable-line @typescript-eslint/no-explicit-any
       fail("Hex.fromBin() is not thrown Error");
     } catch (err) {
       assert(err instanceof Error);
       assertEquals(err.message, '"bin" is not Uint8Array');
     }
-  });
+  })
 });
