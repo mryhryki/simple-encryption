@@ -17,9 +17,9 @@ jobs:
       - name: Show environment
         run: set -x; pwd; ls -la; deno --version;
 
-      - name: Test
-        run: deno test ./src/
       - name: Check
-        run: deno check ./src/test/index.ts
+        run: deno check ./src/index.ts
       - name: Format
         run: deno fmt ./src/
+      - name: Test
+        run: deno test ./src/
