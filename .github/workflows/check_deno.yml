@@ -17,6 +17,4 @@ jobs:
       - name: Show environment
         run: set -x; pwd; ls -la; deno --version;
       - name: Run test
-        run: |
-          deno test
-          deno run ./src/test/index_deno.ts
+        run: deno run ./src/test/index_deno.ts
