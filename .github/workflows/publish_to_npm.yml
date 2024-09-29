@@ -29,9 +29,8 @@ jobs:
           deno-version: v1.x
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v; deno --version;
-      - name: Set branch name
-        run: |
-          echo "BRANCH=bump-$(date +'%Y%m%d-%H%M%S')" >> "${GITHUB_ENV}"
+
+      # Release
       - name: Configure git
         run: |
           git config user.name "github-actions"
