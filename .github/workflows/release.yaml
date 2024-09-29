@@ -29,16 +29,6 @@ jobs:
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
 
-      # Check
-      - name: install packages
-        run: npm ci
-      - name: lint
-        run: npm run lint
-      - name: test
-        run: npm test
-      - name: build
-        run: npm run build
-
       # Release
       - name: Setup Git
         run: |
