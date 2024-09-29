@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         deno-version:
+          - "canary"
           - "v1.x"
     steps:
       - name: Checkout
