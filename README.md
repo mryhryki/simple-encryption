@@ -237,3 +237,7 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 3. Edit source code.
 4. Run test by `npm test`.
 5. Push to GitHub and create Pull Request, so CI will run tests.
+
+## Release
+
+Run [release](https://github.com/mryhryki/simple-encryption/actions/workflows/release.yaml) workflow.
