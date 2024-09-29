@@ -1,8 +1,11 @@
 name: check_deno
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - "main"
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   check:
@@ -12,7 +15,7 @@ jobs:
     strategy:
       matrix:
         deno-version:
-          - v1.x
+          - "v1.x"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
