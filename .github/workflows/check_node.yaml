@@ -1,0 +1,43 @@
+name: check_node
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+  schedule:
+    - cron: "0 8 * * FRI" # 17:00, every friday on JST
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        node-version:
+          - "16"
+          - "18"
+          - "20"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: Show environment
+        run: set -x; pwd; ls -la; node -v; npm -v;
+      - name: Run test with packed tarball
+        run: |
+          set -xe
+          npm pack
+          TARBALL="$(ls -1 mryhryki-simple-encryption-*.tgz | head -n 1)"
+          npm install "./${TARBALL}"
+          deno task build:test
+          node src/test/index_node.js
