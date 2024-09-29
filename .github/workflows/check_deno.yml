@@ -7,13 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    strategy:
+      matrix:
+        deno-version:
+          - v1.x
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.x
+          deno-version: ${{ matrix.deno-version }}
       - name: Show environment
         run: set -x; pwd; ls -la; deno --version;
       - name: Run test
