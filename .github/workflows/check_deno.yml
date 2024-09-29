@@ -5,6 +5,8 @@ on:
     branches:
       - "main"
   pull_request:
+  schedule:
+    - cron: "0 8 * * FRI" # 17:00, every friday on JST
   workflow_dispatch:
 
 jobs:
