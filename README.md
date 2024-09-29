@@ -18,7 +18,7 @@ Simple encryption/decryption library for Node.js/Deno/Bun/Browser.
 
 ## Support Runtime
 
-- [Node.js](https://nodejs.org/) ([LTS versions](https://github.com/nodejs/release#release-schedule): v16, v18, v20)
+- [Node.js](https://nodejs.org/) ([LTS versions](https://github.com/nodejs/release#release-schedule): v18, v20, v22, latest)
 - [Deno](https://deno.land/) (v1.x)
 - [Bun](https://bun.sh/) (Latest version)
 - Browsers: Works that support [Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API), but not tested.
