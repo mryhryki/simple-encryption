@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         bun-version:
+          - "canary"
           - "latest"
     steps:
       - name: Checkout
