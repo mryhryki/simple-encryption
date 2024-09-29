@@ -1,6 +1,8 @@
 name: check_code
 
-on: push
+on:
+  - push
+  - pull_request
 
 jobs:
   check:
