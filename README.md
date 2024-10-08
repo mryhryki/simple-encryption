@@ -4,7 +4,7 @@ Simple encryption/decryption library for Node.js/Deno/Bun/Browser.
 
 ## Concept
 
-- No dependencies, Only use [Crypto](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
+- No dependencies, Only use [Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)
 - Easy to use without detailed knowledge for encryption (Please use other libraries for complex usage)
 
 ## License
