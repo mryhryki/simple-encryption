@@ -81,7 +81,7 @@ $ cat package.json | grep '"type":'
 Add `index.js` file:
 
 ```javascript
-// If you are using Node.js v19 and later, there is `crypto` in `globalThis`, you don't need to import crypto.
+// If you are using Node.js v19 or later, there is `crypto` in `globalThis`, you don't need to import crypto.
 //
 // Ref:
 // - https://github.com/nodejs/node/pull/42083
