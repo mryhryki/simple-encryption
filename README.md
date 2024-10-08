@@ -22,9 +22,9 @@ This works on JavaScript runtimes that support the [Web Cryptography API](https:
 
 This has been tested on these runtimes.
 
-- [Node.js](https://nodejs.org/) ([LTS versions](https://github.com/nodejs/release#release-schedule): v18, v20, v22, latest)
-- [Deno](https://deno.land/) (v1.x)
-- [Bun](https://bun.sh/) (Latest version)
+- [Node.js](https://nodejs.org/): `v18`, `v20`, `v22`, [latest](https://github.com/nodejs/release#release-schedule) ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_node.yaml))
+- [Deno](https://deno.land/): `v1.x`, `canary` ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_deno.yaml))
+- [Bun](https://bun.sh/) `latest`, `canary` ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_bun.yaml))
 
 ## Supported Algorithm
 
