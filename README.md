@@ -4,7 +4,7 @@ Simple encryption/decryption library for Node.js/Deno/Bun/Browser.
 
 ## Concept
 
-- No dependencies, Only use [Crypto](https://developer.mozilla.org/en-US/docs/Web/API/Crypto)
+- No dependencies, Only use [Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)
 - Easy to use without detailed knowledge for encryption (Please use other libraries for complex usage)
 
 ## License
@@ -18,10 +18,13 @@ Simple encryption/decryption library for Node.js/Deno/Bun/Browser.
 
 ## Support Runtime
 
-- [Node.js](https://nodejs.org/) ([LTS versions](https://github.com/nodejs/release#release-schedule): v18, v20, v22, latest)
-- [Deno](https://deno.land/) (v1.x)
-- [Bun](https://bun.sh/) (Latest version)
-- Browsers: Works that support [Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API), but not tested.
+This works on JavaScript runtimes that support the [Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
+
+This has been tested on these runtimes.
+
+- [Node.js](https://nodejs.org/): `v18`, `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_node.yaml))
+- [Deno](https://deno.land/): `v1.x`, `canary` ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_deno.yaml))
+- [Bun](https://bun.sh/): `latest`, `canary` ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_bun.yaml))
 
 ## Supported Algorithm
 
@@ -78,24 +81,24 @@ $ cat package.json | grep '"type":'
 Add `index.js` file:
 
 ```javascript
-// If you are using Node.js v19 and later, there is `crypto` in `globalThis`, you don't need to import crypto.
+// If you are using Node.js v19 or later, there is `crypto` in `globalThis`, you don't need to import crypto.
 //
 // Ref:
 // - https://github.com/nodejs/node/pull/42083
 // - https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V19.md#19.0.0
-import {webcrypto as crypto} from "crypto";
-import {decrypt, encrypt} from "@mryhryki/simple-encryption";
+import { webcrypto as crypto } from "crypto";
+import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 (async () => {
   const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
   const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
   // Encrypt
-  const encryptResult = await encrypt({key, iv, plainData, crypto});
+  const encryptResult = await encrypt({ key, plainData, crypto });
   console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 
   // Decrypt
-  const decryptResult = await decrypt({...encryptResult, key, crypto});
+  const decryptResult = await decrypt({ ...encryptResult, key, crypto });
   console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
 })();
 ```
@@ -118,7 +121,7 @@ Add `index.js` file:
 
 ```javascript
 // index.js
-import {decrypt, encrypt} from "npm:@mryhryki/simple-encryption";
+import { decrypt, encrypt } from "npm:@mryhryki/simple-encryption";
 // or Using CDN
 // import { decrypt, encrypt } from "https://cdn.skypack.dev/@mryhryki/simple-encryption";
 // import { decrypt, encrypt } from "https://esm.sh/@mryhryki/simple-encryption";
@@ -127,11 +130,11 @@ const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; 
 const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
 // Encrypt
-const encryptResult = await encrypt({key, iv, plainData});
+const encryptResult = await encrypt({ key, plainData });
 console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 
 // Decrypt
-const decryptResult = await decrypt({...encryptResult, key});
+const decryptResult = await decrypt({ ...encryptResult, key });
 console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
 ```
 
@@ -153,7 +156,7 @@ Add `index.js` file:
 
 ```javascript
 (async () => {
-  const {encrypt, decrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption");
+  const { encrypt, decrypt } = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption");
   // or
   // const {encrypt, decrypt} = await import("https://esm.sh/@mryhryki/simple-encryption")
 
@@ -161,11 +164,11 @@ Add `index.js` file:
   const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
 
   // Encrypt
-  const encryptResult = await encrypt({key, iv, plainData});
+  const encryptResult = await encrypt({ key, plainData });
   console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 
   // Decrypt
-  const decryptResult = await decrypt({...encryptResult, key});
+  const decryptResult = await decrypt({ ...encryptResult, key });
   console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
 })();
 ```
