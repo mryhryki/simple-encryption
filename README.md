@@ -86,8 +86,8 @@ Add `index.js` file:
 // Ref:
 // - https://github.com/nodejs/node/pull/42083
 // - https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V19.md#19.0.0
-import {webcrypto as crypto} from "crypto";
-import {decrypt, encrypt} from "@mryhryki/simple-encryption";
+import { webcrypto as crypto } from "crypto";
+import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 (async () => {
   const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
@@ -121,7 +121,7 @@ Add `index.js` file:
 
 ```javascript
 // index.js
-import {decrypt, encrypt} from "npm:@mryhryki/simple-encryption";
+import { decrypt, encrypt } from "npm:@mryhryki/simple-encryption";
 // or Using CDN
 // import { decrypt, encrypt } from "https://cdn.skypack.dev/@mryhryki/simple-encryption";
 // import { decrypt, encrypt } from "https://esm.sh/@mryhryki/simple-encryption";
@@ -156,7 +156,7 @@ Add `index.js` file:
 
 ```javascript
 (async () => {
-  const {encrypt, decrypt} = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption");
+  const { encrypt, decrypt } = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption");
   // or
   // const {encrypt, decrypt} = await import("https://esm.sh/@mryhryki/simple-encryption")
 
