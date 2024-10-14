@@ -18,6 +18,7 @@ jobs:
       matrix:
         deno-version:
           - "canary"
+          - "v2.x"
           - "v1.x"
     steps:
       - name: Checkout
