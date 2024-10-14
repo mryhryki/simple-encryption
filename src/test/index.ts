@@ -12,7 +12,7 @@ import {
   test_03_1_DecryptWithAesGcm,
   test_03_2_DecryptWithAesCbc,
 } from "./03_decrypt.ts";
-import { Test, TestSubjects } from "./common.ts";
+import type { Test, TestSubjects } from "./common.ts";
 
 const tests: Test[] = [
   test_01_1_FlowWithAesGcmWithIv,
