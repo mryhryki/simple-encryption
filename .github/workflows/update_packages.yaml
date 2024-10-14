@@ -1,0 +1,42 @@
+name: update_packages
+
+on:
+  schedule:
+    - cron: "15 11 20 3,7,11 *" # UTC
+  workflow_dispatch:
+
+jobs:
+  update_packages:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: Kesin11/actions-timeline@v2
+      - name: Setup volta
+        uses: volta-cli/action@v4
+      - name: Show environment
+        run: pwd; ls -la; node -v; npm -v
+
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Outdated packages
+        run: npm outdated || true
+      - name: Update packages
+        run: npx npm-check-updates --upgrade # --reject "eslint,eslint-plugin-unused-imports"
+      - name: Update package-lock.json
+        run: npm install
+      - name: Update volta
+        run: |
+          volta pin node@lts
+          volta pin npm@latest
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "Update package.json"
+          commit-message: "Update package.json"
+          branch: "update-packages"
+          delete-branch: true
+          branch-suffix: timestamp
+          assignees: mryhryki
