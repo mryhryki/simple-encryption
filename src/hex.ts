@@ -16,7 +16,9 @@ const toBin = (hex: string): Uint8Array => {
 
   const results: number[] = [];
   for (let p = 0; p < hex.length; p += 2) {
-    results.push(parseInt(hex.substring(p, p + 2), HexCharacters.length));
+    results.push(
+      Number.parseInt(hex.substring(p, p + 2), HexCharacters.length),
+    );
   }
   return new Uint8Array(results);
 };
@@ -30,7 +32,7 @@ const fromBin = (bin: Uint8Array): string => {
       [
         HexCharacters.at(Math.floor(n / HexCharacters.length)), //
         HexCharacters.at(n % HexCharacters.length),
-      ].join("")
+      ].join(""),
     )
     .join("");
 };
