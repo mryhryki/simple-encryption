@@ -22,7 +22,7 @@ jobs:
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Check
-        run: npm run check
+        run: npm run type
       - name: Lint
         run: npm run lint
       - name: Format
