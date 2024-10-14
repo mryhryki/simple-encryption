@@ -32,11 +32,10 @@ jobs:
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Install
         run: npm install
+      - name: Pack tarball
+        run: npm pack
       - name: Run test with packed tarball
         run: |
-          set -xe
-          npm pack
           TARBALL="$(ls -1 mryhryki-simple-encryption-*.tgz | head -n 1)"
           npm install "./${TARBALL}"
-          npm run build:test
           node src/test/index_node.js
