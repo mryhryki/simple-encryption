@@ -20,7 +20,7 @@ jobs:
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Install
-        run: npm ci
+        run: npm install
       - name: Check
         run: npm run type
       - name: Lint
