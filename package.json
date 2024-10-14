@@ -29,7 +29,7 @@
     "type:watch": "tsc --isolatedDeclarations --watch",
     "format": "biome check --write ./src/",
     "lint": "biome check ./src/",
-    "prepare": "deno task build",
+    "prepare": "npm run build",
     "test": "vitest run --dir ./src/ --disable-console-intercept",
     "test:watch": "vitest watch --dir ./src/ --disable-console-intercept"
   },
