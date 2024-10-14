@@ -26,16 +26,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "simple",
-    "encryption",
-    "decryption",
-    "crypto"
-  ],
+  "keywords": ["simple", "encryption", "decryption", "crypto"],
   "scripts": {
     "build": "esbuild --bundle --minify --platform=browser --outfile=./src/index.js ./src/index.ts",
     "build:test": "esbuild --bundle --minify --platform=browser --outfile=./src/test/index.js ./src/test/index.ts",
-    "check": "echo TODO(tsc) && exit 1",
+    "type": "tsc --isolatedDeclarations",
+    "type:watch": "tsc --isolatedDeclarations --watch",
     "format": "biome check --write ./src/",
     "lint": "biome check ./src/",
     "prepare": "deno task build",
@@ -44,6 +40,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.3",
-    "esbuild": "^0.24.0"
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3"
   }
 }
