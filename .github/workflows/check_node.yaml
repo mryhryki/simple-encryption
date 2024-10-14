@@ -40,4 +40,5 @@ jobs:
         run: |
           TARBALL="$(ls -1 mryhryki-simple-encryption-*.tgz | head -n 1)"
           npm install "./${TARBALL}"
+          npm run build:test
           node src/test/index_node.js
