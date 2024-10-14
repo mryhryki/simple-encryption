@@ -25,8 +25,6 @@ jobs:
         run: npm run type
       - name: Lint
         run: npm run lint
-      - name: Format
-        run: npm run format
       - name: Test
         run: npm run test
       - name: Build
