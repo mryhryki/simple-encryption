@@ -239,7 +239,7 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 2. Install [Node.js](https://nodejs.org/).
 3. Edit source code.
 4. Install dependencies by `npm install`.
-5. Run test by `npm test`.
+5. Check by `npm run check`.
 6. Push to GitHub and create Pull Request, so CI will run tests.
 
 ## Release
