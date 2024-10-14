@@ -1,6 +1,6 @@
-import * as crypto from "crypto";
-import { test } from "./index.js";
+import * as crypto from "node:crypto";
 import { decrypt, encrypt } from "@mryhryki/simple-encryption";
+import { test } from "./index.js";
 
 // Node.js v19 and later, there is `crypto` in `globalThis`.
 //
