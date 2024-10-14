@@ -29,6 +29,7 @@
   "scripts": {
     "build": "esbuild --bundle --minify --platform=browser --format=esm --outfile=./src/index.js ./src/index.ts",
     "build:test": "esbuild --bundle --minify --platform=browser --format=esm --outfile=./src/test/index.js ./src/test/index.ts",
+    "check": "npm run type && npm run lint && npm run test && npm run build",
     "type": "tsc --isolatedDeclarations",
     "type:watch": "tsc --isolatedDeclarations --watch",
     "format": "biome check --write ./src/",
