@@ -25,7 +25,7 @@ const tests: Test[] = [
   test_03_2_DecryptWithAesCbc,
 ];
 
-export const test = async (testSubjects: TestSubjects) => {
+export const test = async (testSubjects: TestSubjects): Promise<void> => {
   const testIds = tests.map((t) => t.id);
   if (testIds.length !== new Set(testIds).size) {
     throw new Error("Duplicate test id");
