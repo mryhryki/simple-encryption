@@ -32,6 +32,8 @@ jobs:
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Install
         run: npm install
+      - name: Check
+        run: npm run check
 
       # Release
       - name: Setup Git
