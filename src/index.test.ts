@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.193.0/testing/asserts.ts";
+import { describe, expect, it } from "vitest";
 import { decrypt, encrypt } from "./index.ts";
 import type { SimpleEncryptionType } from "./types.d.ts";
 
@@ -10,39 +10,32 @@ const Algorithms: SimpleEncryptionType.SupportAlgorithm[] = [
   "AES-GCM",
   "AES-CBC",
 ];
-await Promise.all(
-  Algorithms.map((alg) => {
-    Deno.test(`Encrypt/Decrypt: ${alg}`, async (t) => {
-      let encryptResult: SimpleEncryptionType.EncryptedData = {
-        alg,
-        data: "(DUMMY)",
-        iv: "(DUMMY)",
-      };
 
-      await t.step(`Encrypt: ${alg}`, async () => {
-        encryptResult = await encrypt({
-          alg,
-          iv,
-          key,
-          plainData: new TextEncoder().encode(sampleData),
-        });
-        assertEquals(encryptResult.alg, alg, "arg");
-        assertEquals(encryptResult.iv, iv, "iv");
-      });
+describe.each(Algorithms)('Encrypt/Decrypt: "%s"', (alg) => {
+  let encryptResult: SimpleEncryptionType.EncryptedData = {
+    alg,
+    data: "(DUMMY)",
+    iv: "(DUMMY)",
+  };
 
-      await t.step(`Decrypt: ${alg}`, async () => {
-        const { plainData } = await decrypt({ ...encryptResult, key });
-        assertEquals(
-          new TextDecoder().decode(plainData),
-          sampleData,
-          "decrypt result",
-        );
-      });
+  it(`Encrypt: ${alg}`, async () => {
+    encryptResult = await encrypt({
+      alg,
+      iv,
+      key,
+      plainData: new TextEncoder().encode(sampleData),
     });
-  }),
-);
+    expect(encryptResult.alg).toEqual(alg);
+    expect(encryptResult.iv).toEqual(iv);
+  });
 
-Deno.test("Compatibility (AES-CBC)", async (t) => {
+  it(`Decrypt: ${alg}`, async () => {
+    const { plainData } = await decrypt({ ...encryptResult, key });
+    expect(new TextDecoder().decode(plainData)).toEqual(sampleData);
+  });
+});
+
+describe("Compatibility (AES-CBC)", () => {
   const PlainData =
     "RMQc7sORwEpfXljFKRdp5mxlaAOvsndumTsAt3IvPLAb6L15hZ9wWX8pDkm9EHNE1dVsGvy01AiiOaVUltKKrK2SBJrtzhzywunE";
   const EncryptData =
@@ -51,16 +44,13 @@ Deno.test("Compatibility (AES-CBC)", async (t) => {
     "b940fe16e9d74d4ad66686d6345b16db742279983af0a38f7fbfc3fcdb3195d8";
   const IV = "55bb4e5f8996d0a9e6a8a62c5adcff5b";
 
-  await t.step(
-    `printf '${PlainData}' | openssl aes-256-cbc -K "${Key}" -iv "${IV}" -nosalt | xxd -p`,
-    async () => {
-      const result = await encrypt({
-        alg: "AES-CBC",
-        iv: IV,
-        key: Key,
-        plainData: new TextEncoder().encode(PlainData),
-      });
-      assertEquals(result.data, EncryptData);
-    },
-  );
+  it(`printf '${PlainData}' | openssl aes-256-cbc -K "${Key}" -iv "${IV}" -nosalt | xxd -p`, async () => {
+    const result = await encrypt({
+      alg: "AES-CBC",
+      iv: IV,
+      key: Key,
+      plainData: new TextEncoder().encode(PlainData),
+    });
+    expect(result.data).toEqual(EncryptData);
+  });
 });
