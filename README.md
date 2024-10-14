@@ -23,7 +23,7 @@ This works on JavaScript runtimes that support the [Web Cryptography API](https:
 This has been tested on these runtimes.
 
 - [Node.js](https://nodejs.org/): `v18`, `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
-- [Deno](https://deno.land/): `v1.x`, `canary` ([Workflow file](/.github/workflows/check_deno.yaml))
+- [Deno](https://deno.land/): `v1.x`, `v2.x`, `canary` ([Workflow file](/.github/workflows/check_deno.yaml))
 - [Bun](https://bun.sh/): `latest`, `canary` ([Workflow file](/.github/workflows/check_bun.yaml))
 
 ## Supported Algorithms
