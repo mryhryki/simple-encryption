@@ -237,7 +237,7 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 
 1. Fork this repository.
 2. Install [Node.js](https://nodejs.org/).
-3. Install dependencies by `npm install`.
+3. Install dependencies for development by `npm install`.
 4. Edit source code.
 5. Check by `npm run check`.
 6. Push to GitHub and create Pull Request, so CI will run tests.
