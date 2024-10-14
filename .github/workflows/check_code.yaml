@@ -19,6 +19,8 @@ jobs:
         uses: volta-cli/action@v4
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
+      - name: Install
+        run: npm ci
       - name: Check
         run: npm run type
       - name: Lint
