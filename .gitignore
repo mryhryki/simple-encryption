@@ -1,5 +1,4 @@
 mryhryki-simple-encryption-*.tgz
-deno.lock
 node_modules/
 package-lock.json
 package/
