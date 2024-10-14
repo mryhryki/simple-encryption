@@ -22,10 +22,4 @@ jobs:
       - name: Install
         run: npm install
       - name: Check
-        run: npm run type
-      - name: Lint
-        run: npm run lint
-      - name: Test
-        run: npm run test
-      - name: Build
-        run: npm run build
+        run: npm run check
