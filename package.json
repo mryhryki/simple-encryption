@@ -27,8 +27,8 @@
     "npm": "10.9.0"
   },
   "scripts": {
-    "build": "esbuild --bundle --minify --platform=browser --outfile=./src/index.js ./src/index.ts",
-    "build:test": "esbuild --bundle --minify --platform=browser --outfile=./src/test/index.js ./src/test/index.ts",
+    "build": "esbuild --bundle --minify --platform=browser --format=esm --outfile=./src/index.js ./src/index.ts",
+    "build:test": "esbuild --bundle --minify --platform=browser --format=esm --outfile=./src/test/index.js ./src/test/index.ts",
     "type": "tsc --isolatedDeclarations",
     "type:watch": "tsc --isolatedDeclarations --watch",
     "format": "biome check --write ./src/",
