@@ -236,10 +236,11 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 ## Development
 
 1. Fork this repository.
-2. Install [Deno](https://deno.land/manual@v1.35.0/getting_started/installation).
-3. Edit source code.
-4. Run test by `npm test`.
-5. Push to GitHub and create Pull Request, so CI will run tests.
+2. Install [Node.js](https://nodejs.org/).
+3. Install dependencies for development by `npm install`.
+4. Edit source code.
+5. Check by `npm run check`.
+6. Push to GitHub and create Pull Request, so CI will run tests.
 
 ## Release
 

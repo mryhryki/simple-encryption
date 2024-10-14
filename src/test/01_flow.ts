@@ -1,5 +1,10 @@
-import { SimpleEncryptionType } from "../types.d.ts";
-import { assert, DecryptFunc, EncryptFunc, Test } from "./common.ts";
+import type { SimpleEncryptionType } from "../types.d.ts";
+import {
+  assert,
+  type DecryptFunc,
+  type EncryptFunc,
+  type Test,
+} from "./common.ts";
 
 const KEY = "2dc4104a50a08a41f53d3a6f10700f9660833ad2b369660ad24aa8cbf1657544";
 const IV = "c3b21a40f02858c45853f369143d0b44";
@@ -49,8 +54,5 @@ const flow = async ({ encrypt, decrypt, alg, iv }: FlowArgs): Promise<void> => {
   }
 
   const { plainData } = await decrypt({ ...encryptResult, key: KEY });
-  assert(
-    new TextDecoder().decode(plainData),
-    PlainData,
-  );
+  assert(new TextDecoder().decode(plainData), PlainData);
 };

@@ -24,16 +24,16 @@ jobs:
         with:
           # This setting is required to push contents and tags by git for main branch
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
+      - name: Install
+        run: npm install
+      - name: Check
+        run: npm run check
 
       # Release
       - name: Setup Git
@@ -50,7 +50,7 @@ jobs:
           echo VERSION="v$(cat package.json | jq -r '.version')" >> "${GITHUB_ENV}"
       - name: Publish to npmjs.com
         run: |
-          npm run prepare
+          npm run build
           npm publish
       - name: Push tag to GitHub
         run: |

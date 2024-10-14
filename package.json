@@ -1,18 +1,14 @@
 {
   "name": "@mryhryki/simple-encryption",
+  "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "version": "0.1.3",
+  "license": "MIT",
   "main": "src/index.js",
-  "types": "src/types.d.ts",
   "type": "module",
+  "types": "src/types.d.ts",
   "author": {
     "name": "mryhryki",
     "url": "https://github.com/mryhryki"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=16",
-    "deno": ">=1.17",
-    "bun": ">=0.7"
   },
   "repository": {
     "type": "git",
@@ -22,17 +18,29 @@
   "bugs": {
     "url": "https://github.com/mryhryki/simple-encryption/issues"
   },
-  "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "simple",
-    "encryption",
-    "decryption",
-    "crypto"
-  ],
+  "keywords": ["simple", "encryption", "decryption", "crypto"],
+  "volta": {
+    "node": "20.18.0",
+    "npm": "10.9.0"
+  },
   "scripts": {
-    "prepare": "deno task build"
+    "build": "esbuild --bundle --minify --platform=browser --format=esm --outfile=./src/index.js ./src/index.ts",
+    "build:test": "esbuild --bundle --minify --platform=browser --format=esm --outfile=./src/test/index.js ./src/test/index.ts",
+    "check": "npm run type && npm run lint && npm run test && npm run build",
+    "type": "tsc --isolatedDeclarations",
+    "type:watch": "tsc --isolatedDeclarations --watch",
+    "format": "biome check --write ./src/",
+    "lint": "biome check ./src/",
+    "test": "vitest run --dir ./src/ --disable-console-intercept",
+    "test:watch": "vitest watch --dir ./src/ --disable-console-intercept"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.3",
+    "esbuild": "0.24.0",
+    "typescript": "5.6.3",
+    "vitest": "2.1.2"
   }
 }

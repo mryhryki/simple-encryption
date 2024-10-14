@@ -1,4 +1,4 @@
-import { SimpleEncryptionType } from "./types.d.ts";
+import type { SimpleEncryptionType } from "./types.d.ts";
 
 export const DefaultAlg: Readonly<SimpleEncryptionType.SupportAlgorithm> =
   "AES-GCM" as const;
@@ -15,7 +15,4 @@ export const getKey = (
   alg: string,
   crypto: Crypto,
 ): Promise<CryptoKey> =>
-  crypto.subtle.importKey("raw", key, alg, true, [
-    "encrypt",
-    "decrypt",
-  ]);
+  crypto.subtle.importKey("raw", key, alg, true, ["encrypt", "decrypt"]);

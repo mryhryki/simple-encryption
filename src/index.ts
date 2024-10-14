@@ -1,7 +1,7 @@
 import { checkIvLength } from "./check.ts";
 import { DefaultAlg, getKey, getRandomBytes } from "./common.ts";
 import { Hex } from "./hex.ts";
-import { SimpleEncryptionType } from "./types.d.ts";
+import type { SimpleEncryptionType } from "./types.d.ts";
 
 export const encrypt = async (
   args: SimpleEncryptionType.EncryptArgs,
