@@ -7,8 +7,9 @@ import { Hex } from "./hex.ts";
 
 const Array256 = Array.from({ length: 256 }).map((_, i) => i);
 const HexBin = new Uint8Array(Array256);
-const HexText = Array256.map((i) => Number(i).toString(16).padStart(2, "0"))
-  .join("");
+const HexText = Array256.map((i) =>
+  Number(i).toString(16).padStart(2, "0"),
+).join("");
 
 Deno.test("Hex", async (t) => {
   await t.step("Hex.toBin(ValidText)", () => {
@@ -44,7 +45,7 @@ Deno.test("Hex", async (t) => {
 
   await t.step("Hex.toBin(Not string)", () => {
     try {
-      // deno-lint-ignore no-explicit-any
+      // biome-ignore lint/suspicious/noExplicitAny: for testing
       Hex.toBin(1234 as any);
       fail("Hex.toBin() is not thrown Error");
     } catch (err) {
@@ -60,7 +61,7 @@ Deno.test("Hex", async (t) => {
   await t.step("Hex.fromBin(Not Uint8Array)", () => {
     assertEquals(HexText, Hex.fromBin(HexBin));
     try {
-      // deno-lint-ignore no-explicit-any
+      // biome-ignore lint/suspicious/noExplicitAny: for testing
       Hex.fromBin(new Int8Array(4) as any);
       fail("Hex.fromBin() is not thrown Error");
     } catch (err) {
