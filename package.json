@@ -26,15 +26,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "simple",
-    "encryption",
-    "decryption",
-    "crypto"
-  ],
+  "keywords": ["simple", "encryption", "decryption", "crypto"],
   "scripts": {
-    "build": "echo TODO(esbuild) && exit 1",
-    "build:test": "echo TODO(esbuild) && exit 1",
+    "build": "esbuild --bundle --minify --platform=browser --outfile=./src/index.js ./src/index.ts",
+    "build:test": "esbuild --bundle --minify --platform=browser --outfile=./src/test/index.js ./src/test/index.ts",
     "check": "echo TODO(tsc) && exit 1",
     "format": "biome check --write ./src/",
     "lint": "biome check ./src/",
