@@ -1,18 +1,14 @@
 {
   "name": "@mryhryki/simple-encryption",
+  "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "version": "0.1.3",
+  "license": "MIT",
   "main": "src/index.js",
-  "types": "src/types.d.ts",
   "type": "module",
+  "types": "src/types.d.ts",
   "author": {
     "name": "mryhryki",
     "url": "https://github.com/mryhryki"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=16",
-    "deno": ">=1.17",
-    "bun": ">=0.7"
   },
   "repository": {
     "type": "git",
@@ -22,7 +18,6 @@
   "bugs": {
     "url": "https://github.com/mryhryki/simple-encryption/issues"
   },
-  "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
   "publishConfig": {
     "access": "public"
   },
