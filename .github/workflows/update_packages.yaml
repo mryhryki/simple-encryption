@@ -8,20 +8,29 @@ on:
 jobs:
   update_packages:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+      pull-requests: write
     steps:
+      - uses: Kesin11/actions-timeline@v2
+      - name: Setup volta
+        uses: volta-cli/action@v4
+      - name: Show environment
+        run: pwd; ls -la; node -v; npm -v
+
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Outdated packages
+        run: npm outdated || true
       - name: Update packages
+        run: npx npm-check-updates --upgrade # --reject "eslint,eslint-plugin-unused-imports"
+      - name: Update package-lock.json
+        run: npm install
+      - name: Update volta
         run: |
-          npm i -g npm
-          npm exec -- npm-check-updates -u
-          npm install
+          volta pin node@lts
+          volta pin npm@latest
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
@@ -31,4 +40,3 @@ jobs:
           delete-branch: true
           branch-suffix: timestamp
           assignees: mryhryki
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
