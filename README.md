@@ -16,17 +16,17 @@ Simple encryption/decryption library for Node.js/Deno/Bun/Browser.
 - [Encrypt](https://mryhryki.github.io/simple-encryption/encrypt.html) ([Source](./docs/encrypt.html))
 - [Decrypt](https://mryhryki.github.io/simple-encryption/decrypt.html) ([Source](./docs/decrypt.html))
 
-## Support Runtime
+## Supported Runtimes
 
 This works on JavaScript runtimes that support the [Web Cryptography API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
 
 This has been tested on these runtimes.
 
-- [Node.js](https://nodejs.org/): `v18`, `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_node.yaml))
-- [Deno](https://deno.land/): `v1.x`, `canary` ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_deno.yaml))
-- [Bun](https://bun.sh/): `latest`, `canary` ([Workflow file](https://github.com/mryhryki/simple-encryption/blob/update-readme/.github/workflows/check_bun.yaml))
+- [Node.js](https://nodejs.org/): `v18`, `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
+- [Deno](https://deno.land/): `v1.x`, `canary` ([Workflow file](/.github/workflows/check_deno.yaml))
+- [Bun](https://bun.sh/): `latest`, `canary` ([Workflow file](/.github/workflows/check_bun.yaml))
 
-## Supported Algorithm
+## Supported Algorithms
 
 You can use these algorithm:
 
