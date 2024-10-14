@@ -30,6 +30,8 @@ jobs:
           node-version: 22
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
+      - name: Install
+        run: npm ci
 
       # Release
       - name: Setup Git
