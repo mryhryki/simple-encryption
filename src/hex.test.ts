@@ -1,8 +1,4 @@
-import {
-  assert,
-  assertEquals,
-  fail,
-} from "https://deno.land/std@0.193.0/testing/asserts.ts";
+import { assert, describe, expect, it } from "vitest";
 import { Hex } from "./hex.ts";
 
 const Array256 = Array.from({ length: 256 }).map((_, i) => i);
@@ -11,62 +7,61 @@ const HexText = Array256.map((i) =>
   Number(i).toString(16).padStart(2, "0"),
 ).join("");
 
-Deno.test("Hex", async (t) => {
-  await t.step("Hex.toBin(ValidText)", () => {
-    assertEquals(HexBin.toString(), Hex.toBin(HexText).toString());
+describe("Hex", async () => {
+  it("Hex.toBin(ValidText)", () => {
+    expect(HexBin.toString()).toBe(Hex.toBin(HexText).toString());
   });
 
-  await t.step("Hex.toBin(EmptyText)", () => {
-    assertEquals("", Hex.toBin("").toString());
+  it("Hex.toBin(EmptyText)", () => {
+    expect("", Hex.toBin("").toString());
   });
 
-  await t.step("Hex.toBin(InvalidText)", () => {
+  it("Hex.toBin(InvalidText)", () => {
     try {
       Hex.toBin("abC12z");
-      fail("Hex.toBin() is not thrown Error");
+      assert.fail("Hex.toBin() is not thrown Error");
     } catch (err) {
-      assert(err instanceof Error);
-      assertEquals(err.message, "Invalid hex characters: C,z");
+      expect(err).toBeInstanceOf(Error);
+      expect((err as Error).message).toBe("Invalid hex characters: C,z");
     }
   });
 
-  await t.step("Hex.toBin(InvalidLength)", () => {
+  it("Hex.toBin(InvalidLength)", () => {
     try {
       Hex.toBin("abcde");
-      fail("Hex.toBin() is not thrown Error");
+      assert.fail("Hex.toBin() is not thrown Error");
     } catch (err) {
-      assert(err instanceof Error);
-      assertEquals(
-        err.message,
+      expect(err).toBeInstanceOf(Error);
+      expect((err as Error).message).toBe(
         '"hex" value length must be a multiple of 2: abcde (Length: 5)',
       );
     }
   });
 
-  await t.step("Hex.toBin(Not string)", () => {
+  it("Hex.toBin(Not string)", () => {
     try {
       // biome-ignore lint/suspicious/noExplicitAny: for testing
       Hex.toBin(1234 as any);
-      fail("Hex.toBin() is not thrown Error");
+      assert.fail("Hex.toBin() is not thrown Error");
     } catch (err) {
-      assert(err instanceof Error);
-      assertEquals(err.message, '"hex" value is not string');
+      expect(err).toBeInstanceOf(Error);
+      expect((err as Error).message).toBe('"hex" value is not string');
     }
   });
 
-  await t.step("Hex.fromBin(ValidBin)", () => {
-    assertEquals(HexText, Hex.fromBin(HexBin));
+  it("Hex.fromBin(ValidBin)", () => {
+    expect(HexText).toBe(Hex.fromBin(HexBin));
   });
 
-  await t.step("Hex.fromBin(Not Uint8Array)", () => {
-    assertEquals(HexText, Hex.fromBin(HexBin));
+  it("Hex.fromBin(Not Uint8Array)", () => {
+    expect(HexText).toEqual(Hex.fromBin(HexBin));
     try {
       // biome-ignore lint/suspicious/noExplicitAny: for testing
       Hex.fromBin(new Int8Array(4) as any);
-      fail("Hex.fromBin() is not thrown Error");
+      assert.fail("Hex.fromBin() is not thrown Error");
     } catch (err) {
-      assert(err instanceof Error);
-      assertEquals(err.message, '"bin" is not Uint8Array');
+      expect(err).toBeInstanceOf(Error);
+      expect((err as Error).message).toBe('"bin" is not Uint8Array');
     }
   });
 });
