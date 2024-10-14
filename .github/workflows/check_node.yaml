@@ -33,7 +33,9 @@ jobs:
       - name: Install
         run: npm install
       - name: Pack tarball
-        run: npm pack
+        run: |
+          npm run build
+          npm pack
       - name: Run test with packed tarball
         run: |
           TARBALL="$(ls -1 mryhryki-simple-encryption-*.tgz | head -n 1)"
