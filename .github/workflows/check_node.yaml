@@ -30,6 +30,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
+      - name: Install
+        run: npm ci
       - name: Run test with packed tarball
         run: |
           set -xe
