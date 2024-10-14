@@ -28,10 +28,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Setup Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Run test with packed tarball
@@ -40,5 +36,5 @@ jobs:
           npm pack
           TARBALL="$(ls -1 mryhryki-simple-encryption-*.tgz | head -n 1)"
           npm install "./${TARBALL}"
-          deno task build:test
+          npm run build:test
           node src/test/index_node.js
