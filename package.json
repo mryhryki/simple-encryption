@@ -28,7 +28,7 @@
     "crypto"
   ],
   "volta": {
-    "node": "20.18.0",
+    "node": "22.11.0",
     "npm": "10.9.0"
   },
   "scripts": {
@@ -43,9 +43,9 @@
     "test:watch": "vitest watch --dir ./src/ --disable-console-intercept"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.3",
+    "@biomejs/biome": "1.9.4",
     "esbuild": "0.24.0",
     "typescript": "5.6.3",
-    "vitest": "2.1.2"
+    "vitest": "2.1.5"
   }
 }
