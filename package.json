@@ -28,8 +28,8 @@
     "crypto"
   ],
   "volta": {
-    "node": "22.14.0",
-    "npm": "11.2.0"
+    "node": "22.17.1",
+    "npm": "11.4.2"
   },
   "scripts": {
     "build": "esbuild --bundle --minify --platform=browser --format=esm --outfile=./src/index.js ./src/index.ts",
@@ -43,9 +43,9 @@
     "test:watch": "vitest watch --dir ./src/ --disable-console-intercept"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "esbuild": "0.25.1",
-    "typescript": "5.8.2",
-    "vitest": "3.0.9"
+    "@biomejs/biome": "2.1.2",
+    "esbuild": "0.25.8",
+    "typescript": "5.8.3",
+    "vitest": "3.2.4"
   }
 }
