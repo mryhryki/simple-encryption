@@ -20,7 +20,7 @@ jobs:
         run: pwd; ls -la; node -v; npm -v
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Outdated packages
         run: npm outdated || true
       - name: Update packages
