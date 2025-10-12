@@ -10,10 +10,7 @@ export const getRandomBytes = (length: number): Uint8Array => {
 };
 
 /** @see https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#raw_import */
-export const getKey = (
-  key: Uint8Array,
-  alg: string,
-): Promise<CryptoKey> =>
+export const getKey = (key: Uint8Array, alg: string): Promise<CryptoKey> =>
   crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, alg, true, [
     "encrypt",
     "decrypt",
