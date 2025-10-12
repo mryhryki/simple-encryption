@@ -32,7 +32,7 @@ This works on JavaScript runtimes that support the [Web Cryptography API](https:
 
 This has been tested on these runtimes.
 
-- [Node.js](https://nodejs.org/): `v18`, `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
+- [Node.js](https://nodejs.org/): `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
 - [Deno](https://deno.land/): `v1.x`, `v2.x`, `canary` ([Workflow file](/.github/workflows/check_deno.yaml))
 - [Bun](https://bun.sh/): `latest`, `canary` ([Workflow file](/.github/workflows/check_bun.yaml))
 
@@ -91,12 +91,7 @@ $ cat package.json | grep '"type":'
 Add `index.js` file:
 
 ```javascript
-// If you are using Node.js v19 or later, there is `crypto` in `globalThis`, you don't need to import crypto.
-//
-// Ref:
-// - https://github.com/nodejs/node/pull/42083
-// - https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V19.md#19.0.0
-import { webcrypto as crypto } from "crypto";
+// index.js
 import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 (async () => {
@@ -132,9 +127,6 @@ Add `index.js` file:
 ```javascript
 // index.js
 import { decrypt, encrypt } from "npm:@mryhryki/simple-encryption";
-// or Using CDN
-// import { decrypt, encrypt } from "https://cdn.skypack.dev/@mryhryki/simple-encryption";
-// import { decrypt, encrypt } from "https://esm.sh/@mryhryki/simple-encryption";
 
 const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
 const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
@@ -215,7 +207,6 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 | `iv`        | `string` (Hex)                                              | No       | Initial vector. DON'T specify this if you don't need.       |
 | `key`       | `string` (Hex)                                              | Yes      | Your secret key.                                            |
 | `plainData` | `Uint8Array`                                                | Yes      | Plain data you want to encrypt.                             |
-| `crypto`    | [Crypto](https://developer.mozilla.org/docs/Web/API/Crypto) | No       | Crypto object. Required if using Node.js (<19.x).           |
 
 #### Return Value
 
@@ -235,7 +226,6 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 | `data`   | `string` (Hex)                                              | Yes      | Encrypted data.                                                                       |
 | `iv`     | `string` (Hex)                                              | Yes      | Initial vector. Must specify same value as during encryption.                         |
 | `key`    | `string` (Hex)                                              | Yes      | Your secret key. Must specify same value as during encryption.                        |
-| `crypto` | [Crypto](https://developer.mozilla.org/docs/Web/API/Crypto) | No       | Crypto object. Required if using Node.js (<19.x).                                     |
 
 #### Return Value
 

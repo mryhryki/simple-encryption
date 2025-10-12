@@ -15,16 +15,12 @@ export namespace SimpleEncryptionType {
     iv?: HexString | null;
     key: HexString;
     plainData: Uint8Array;
-    // TODO: Remove after EOL Node.js v18 (2025-05-01~)
-    crypto?: Crypto;
   }
 
   interface EncryptedData {
     alg: SupportAlgorithm;
     data: HexString;
     iv: HexString;
-    // TODO: Remove after EOL Node.js v18 (2025-05-01~)
-    crypto?: Crypto;
   }
 
   interface DecryptArgs extends EncryptedData {
