@@ -91,6 +91,7 @@ $ cat package.json | grep '"type":'
 Add `index.js` file:
 
 ```javascript
+// index.js
 import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 (async () => {
@@ -126,9 +127,6 @@ Add `index.js` file:
 ```javascript
 // index.js
 import { decrypt, encrypt } from "npm:@mryhryki/simple-encryption";
-// or Using CDN
-// import { decrypt, encrypt } from "https://cdn.skypack.dev/@mryhryki/simple-encryption";
-// import { decrypt, encrypt } from "https://esm.sh/@mryhryki/simple-encryption";
 
 const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
 const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
