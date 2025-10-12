@@ -20,13 +20,13 @@ const EncryptedDataWithAesCbc: SimpleEncryptionType.EncryptedData = {
 
 export const test_02_1_EncryptWithAesGcm: Test = {
   id: "02-1",
-  name: "Encrypto (AES-GCM)",
+  name: "Encrypt (AES-GCM)",
   func: () => enc("AES-GCM", EncryptedDataWithAesGcm),
 };
 
 export const test_02_2_EncryptWithAesCbc: Test = {
   id: "02-2",
-  name: "Encrypto (AES-CBC)",
+  name: "Encrypt (AES-CBC)",
   func: () => enc("AES-CBC", EncryptedDataWithAesCbc),
 };
 
