@@ -15,4 +15,7 @@ export const getKey = (
   alg: string,
   crypto: Crypto,
 ): Promise<CryptoKey> =>
-  crypto.subtle.importKey("raw", key, alg, true, ["encrypt", "decrypt"]);
+  crypto.subtle.importKey("raw", key.buffer as ArrayBuffer, alg, true, [
+    "encrypt",
+    "decrypt",
+  ]);

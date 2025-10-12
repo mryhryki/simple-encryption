@@ -15,9 +15,9 @@ export const encrypt = async (
   );
 
   const encryptedData: ArrayBuffer = await crypto.subtle.encrypt(
-    { name: alg, iv },
+    { name: alg, iv: iv.buffer as ArrayBuffer },
     key,
-    plainData,
+    plainData.buffer as ArrayBuffer,
   );
 
   return {
@@ -37,9 +37,9 @@ export const decrypt = async (
   const key: CryptoKey = await getKey(Hex.toBin(args.key), alg, crypto);
 
   const plainData: ArrayBuffer = await crypto.subtle.decrypt(
-    { name: alg, iv },
+    { name: alg, iv: iv.buffer as ArrayBuffer },
     key,
-    encryptedData,
+    encryptedData.buffer as ArrayBuffer,
   );
 
   return {
