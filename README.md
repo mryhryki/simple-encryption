@@ -32,7 +32,7 @@ This works on JavaScript runtimes that support the [Web Cryptography API](https:
 
 This has been tested on these runtimes.
 
-- [Node.js](https://nodejs.org/): `v18`, `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
+- [Node.js](https://nodejs.org/): `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
 - [Deno](https://deno.land/): `v1.x`, `v2.x`, `canary` ([Workflow file](/.github/workflows/check_deno.yaml))
 - [Bun](https://bun.sh/): `latest`, `canary` ([Workflow file](/.github/workflows/check_bun.yaml))
 
@@ -91,12 +91,6 @@ $ cat package.json | grep '"type":'
 Add `index.js` file:
 
 ```javascript
-// If you are using Node.js v19 or later, there is `crypto` in `globalThis`, you don't need to import crypto.
-//
-// Ref:
-// - https://github.com/nodejs/node/pull/42083
-// - https://github.com/nodejs/node/blob/main/doc/changelogs/CHANGELOG_V19.md#19.0.0
-import { webcrypto as crypto } from "crypto";
 import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 (async () => {
@@ -215,7 +209,6 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 | `iv`        | `string` (Hex)                                              | No       | Initial vector. DON'T specify this if you don't need.       |
 | `key`       | `string` (Hex)                                              | Yes      | Your secret key.                                            |
 | `plainData` | `Uint8Array`                                                | Yes      | Plain data you want to encrypt.                             |
-| `crypto`    | [Crypto](https://developer.mozilla.org/docs/Web/API/Crypto) | No       | Crypto object. Required if using Node.js (<19.x).           |
 
 #### Return Value
 
@@ -235,7 +228,6 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 | `data`   | `string` (Hex)                                              | Yes      | Encrypted data.                                                                       |
 | `iv`     | `string` (Hex)                                              | Yes      | Initial vector. Must specify same value as during encryption.                         |
 | `key`    | `string` (Hex)                                              | Yes      | Your secret key. Must specify same value as during encryption.                        |
-| `crypto` | [Crypto](https://developer.mozilla.org/docs/Web/API/Crypto) | No       | Crypto object. Required if using Node.js (<19.x).                                     |
 
 #### Return Value
 
