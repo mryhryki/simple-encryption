@@ -5,6 +5,18 @@
 
 version: 2
 updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: monthly
+      timezone: Asia/Tokyo
+    target-branch: main
+    reviewers:
+      - mryhryki
+    assignees:
+      - mryhryki
+    labels:
+      - dependencies
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
