@@ -22,9 +22,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-        with:
-          # This setting is required to push contents and tags by git for main branch
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
@@ -58,5 +55,4 @@ jobs:
       - name: Create Release to GitHub
         run: gh release create "${VERSION}" --generate-notes
         env:
-          # This setting is required to push contents and tags by git for main branch
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
