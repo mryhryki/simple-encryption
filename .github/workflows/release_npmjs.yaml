@@ -3,7 +3,7 @@ name: release_npmjs
 on:
   push:
     tags:
-      - 'v*'
+      - v*.*.*
   workflow_dispatch:
 
 jobs:
