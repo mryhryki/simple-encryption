@@ -1,0 +1,33 @@
+name: release_github
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "package.json"
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check that version in package.json has changed
+        id: check
+        run: |
+          VERSION_OF_PACKAGE_JSON="$(jq -r '.version' package.json)"
+          echo "${VERSION_OF_PACKAGE_JSON}"
+          VERSION_OF_GITHUB_RELEASE="$(gh release view --json tagName | jq -r .tagName)"
+          echo "${VERSION_OF_GITHUB_RELEASE}"
+          if [[ "v${VERSION_OF_PACKAGE_JSON}" == "${VERSION_OF_GITHUB_RELEASE}" ]]; then
+            echo "No changes"
+          else
+            echo "changed=true" >> "${GITHUB_OUTPUT}"
+          fi
+      - name: Create Release to GitHub
+        if: ${{ steps.check.outputs.changed == 'true' }}
+        run: |
+          VERSION="$(jq -r '.version' package.json)"
+          gh release create "${VERSION}" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
