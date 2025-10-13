@@ -35,10 +35,7 @@ jobs:
       - name: Check
         run: npm run check
       - name: Update package version
-        id: update_version
-        run: |
-          npm version ${{ github.event.inputs.bump_type }}
-          echo version="v$(cat package.json | jq -r '.version')" >> "${GITHUB_OUTPUT}"
+        run: npm version ${{ github.event.inputs.bump_type }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
