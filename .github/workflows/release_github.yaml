@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "package.json"
+  workflow_dispatch:
 
 jobs:
   release:
@@ -13,6 +14,14 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Check default branch
+        run: |
+          if [[ "${GITHUB_REF_NAME}" != "main" ]]; then
+            echo "This action only runs on the main branch."
+            exit 1
+          fi
+      - name: Checkout
+        uses: actions/checkout@v5
       - name: Check that version in package.json has changed
         id: check
         run: |
