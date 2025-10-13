@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  check:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -34,8 +34,32 @@ jobs:
           else
             echo "changed=true" >> "${GITHUB_OUTPUT}"
           fi
+
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ needs.check.outputs.changed == 'true' }}
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Update npm
+        run: npm install -g npm@latest
+      - name: Install
+        run: npm install
+      - name: Check
+        run: npm run check
       - name: Create Release to GitHub
         if: ${{ steps.check.outputs.changed == 'true' }}
         run: gh release create "v$(jq -r '.version' package.json)" --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
+      - name: Publish to npmjs.com
+        run: |
+          npm run build
+          npm publish
