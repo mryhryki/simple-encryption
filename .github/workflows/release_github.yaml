@@ -15,7 +15,7 @@ jobs:
       - name: Check that version in package.json has changed
         id: check
         run: |
-          VERSION_OF_PACKAGE_JSON="$(jq -r '.version' package.json)"
+          VERSION_OF_PACKAGE_JSON="v$(jq -r '.version' package.json)"
           echo "${VERSION_OF_PACKAGE_JSON}"
           VERSION_OF_GITHUB_RELEASE="$(gh release view --json tagName | jq -r .tagName)"
           echo "${VERSION_OF_GITHUB_RELEASE}"
@@ -26,8 +26,6 @@ jobs:
           fi
       - name: Create Release to GitHub
         if: ${{ steps.check.outputs.changed == 'true' }}
-        run: |
-          VERSION="$(jq -r '.version' package.json)"
-          gh release create "${VERSION}" --generate-notes
+        run: gh release create "v$(jq -r '.version' package.json)" --generate-notes
         env:
           GH_TOKEN: ${{ github.token }}
