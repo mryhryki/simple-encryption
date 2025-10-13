@@ -28,8 +28,6 @@ jobs:
           node-version: 24
       - name: Update npm
         run: npm install -g npm@latest
-      - name: Show environment
-        run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Install
         run: npm install
       - name: Check
