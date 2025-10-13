@@ -37,7 +37,10 @@ jobs:
           git config user.name "mryhryki"
           git config user.email "mryhryki@gmail.com"
       - name: Update package version
-        run: npm version ${{ github.event.inputs.bump_type }}
+        id: update_version
+        run: |
+          npm version ${{ github.event.inputs.bump_type }}
+          echo "v$(jq -r '.version' package.json)" >> "${GITHUB_OUTPUT}"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
