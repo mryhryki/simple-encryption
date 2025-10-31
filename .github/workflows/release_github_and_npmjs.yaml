@@ -31,7 +31,7 @@ jobs:
           echo "${VERSION_OF_PACKAGE_JSON}"
           VERSION_OF_GITHUB_RELEASE="$(gh release view --json tagName | jq -r .tagName)"
           echo "${VERSION_OF_GITHUB_RELEASE}"
-          if [[ "v${VERSION_OF_PACKAGE_JSON}" == "${VERSION_OF_GITHUB_RELEASE}" ]]; then
+          if [[ "${VERSION_OF_PACKAGE_JSON}" == "${VERSION_OF_GITHUB_RELEASE}" ]]; then
             echo "No changes"
           else
             echo "Changed"
