@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup volta
-        uses: volta-cli/action@v4
+        uses: volta-cli/action@v5
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Install
