@@ -43,7 +43,7 @@
     "test:watch": "vitest watch --dir ./src/ --disable-console-intercept"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.10",
+    "@biomejs/biome": "2.4.13",
     "esbuild": "0.28.0",
     "typescript": "6.0.2",
     "vitest": "4.1.2"
