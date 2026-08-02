@@ -32,9 +32,9 @@ This works on JavaScript runtimes that support the [Web Cryptography API](https:
 
 This has been tested on these runtimes.
 
-- [Node.js](https://nodejs.org/): `v20`, `v22`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
-- [Deno](https://deno.land/): `v1.x`, `v2.x`, `canary` ([Workflow file](/.github/workflows/check_deno.yaml))
-- [Bun](https://bun.sh/): `latest`, `canary` ([Workflow file](/.github/workflows/check_bun.yaml))
+- [Node.js](https://nodejs.org/): `v22`, `v24`, `v26`, [`latest`](https://github.com/nodejs/release#release-schedule) ([Workflow file](/.github/workflows/check_node.yaml))
+- [Deno](https://deno.land/): `v1.x`, `v2.x` ([Workflow file](/.github/workflows/check_deno.yaml))
+- [Bun](https://bun.sh/): `latest` ([Workflow file](/.github/workflows/check_bun.yaml))
 
 ## Supported Algorithms
 
@@ -95,8 +95,11 @@ Add `index.js` file:
 import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
 (async () => {
-  const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
-  const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
+  const key =
+    "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
+  const plainData = new TextEncoder().encode(
+    "cf0f2168-ddfc-4c98-be81-1d34e660dd1a",
+  ); // Use TextEncoder if you want to encrypt string
 
   // Encrypt
   const encryptResult = await encrypt({ key, plainData, crypto });
@@ -104,7 +107,10 @@ import { decrypt, encrypt } from "@mryhryki/simple-encryption";
 
   // Decrypt
   const decryptResult = await decrypt({ ...encryptResult, key, crypto });
-  console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
+  console.log(
+    "Decrypt Result:",
+    new TextDecoder().decode(decryptResult.plainData),
+  ); // Use TextDecoder if you want to decrypt as string
 })();
 ```
 
@@ -129,7 +135,9 @@ Add `index.js` file:
 import { decrypt, encrypt } from "npm:@mryhryki/simple-encryption";
 
 const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
-const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
+const plainData = new TextEncoder().encode(
+  "cf0f2168-ddfc-4c98-be81-1d34e660dd1a",
+); // Use TextEncoder if you want to encrypt string
 
 // Encrypt
 const encryptResult = await encrypt({ key, plainData });
@@ -137,7 +145,10 @@ console.log("Encrypt Result:", JSON.stringify(encryptResult, null, 2));
 
 // Decrypt
 const decryptResult = await decrypt({ ...encryptResult, key });
-console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
+console.log(
+  "Decrypt Result:",
+  new TextDecoder().decode(decryptResult.plainData),
+); // Use TextDecoder if you want to decrypt as string
 ```
 
 And run `index.js` by Deno:
@@ -158,12 +169,16 @@ Add `index.js` file:
 
 ```javascript
 (async () => {
-  const { encrypt, decrypt } = await import("https://cdn.skypack.dev/@mryhryki/simple-encryption");
+  const { encrypt, decrypt } =
+    await import("https://cdn.skypack.dev/@mryhryki/simple-encryption");
   // or
   // const {encrypt, decrypt} = await import("https://esm.sh/@mryhryki/simple-encryption")
 
-  const key = "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
-  const plainData = new TextEncoder().encode("cf0f2168-ddfc-4c98-be81-1d34e660dd1a"); // Use TextEncoder if you want to encrypt string
+  const key =
+    "522a432195523d9f8cb65ee85c42e06f6e4f1839e8e6cf11a19631600e17d726"; // This value is sample
+  const plainData = new TextEncoder().encode(
+    "cf0f2168-ddfc-4c98-be81-1d34e660dd1a",
+  ); // Use TextEncoder if you want to encrypt string
 
   // Encrypt
   const encryptResult = await encrypt({ key, plainData });
@@ -171,7 +186,10 @@ Add `index.js` file:
 
   // Decrypt
   const decryptResult = await decrypt({ ...encryptResult, key });
-  console.log("Decrypt Result:", new TextDecoder().decode(decryptResult.plainData)); // Use TextDecoder if you want to decrypt as string
+  console.log(
+    "Decrypt Result:",
+    new TextDecoder().decode(decryptResult.plainData),
+  ); // Use TextDecoder if you want to decrypt as string
 })();
 ```
 
@@ -201,17 +219,17 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 
 #### Arguments
 
-| Name        | Type                                                        | Required | Description                                                 |
-|-------------|-------------------------------------------------------------|----------|-------------------------------------------------------------|
-| `alg`       | `string`                                                    | No       | Algorithm name: `AES-GCM` or `AES-CBC` (Default: `AES-GCM`) |
-| `iv`        | `string` (Hex)                                              | No       | Initial vector. DON'T specify this if you don't need.       |
-| `key`       | `string` (Hex)                                              | Yes      | Your secret key.                                            |
-| `plainData` | `Uint8Array`                                                | Yes      | Plain data you want to encrypt.                             |
+| Name        | Type           | Required | Description                                                 |
+| ----------- | -------------- | -------- | ----------------------------------------------------------- |
+| `alg`       | `string`       | No       | Algorithm name: `AES-GCM` or `AES-CBC` (Default: `AES-GCM`) |
+| `iv`        | `string` (Hex) | No       | Initial vector. DON'T specify this if you don't need.       |
+| `key`       | `string` (Hex) | Yes      | Your secret key.                                            |
+| `plainData` | `Uint8Array`   | Yes      | Plain data you want to encrypt.                             |
 
 #### Return Value
 
 | Name   | Type           | Description                                                                     |
-|--------|----------------|---------------------------------------------------------------------------------|
+| ------ | -------------- | ------------------------------------------------------------------------------- |
 | `alg`  | `string`       | Encrypt algorithm name. Same value as `args.alg` if you specified.              |
 | `data` | `string` (Hex) | Encrypted data.                                                                 |
 | `iv`   | `string` (Hex) | Initial vector. Use when decryption. Same value as `args.alg` if you specified. |
@@ -220,17 +238,17 @@ Decrypt Result: cf0f2168-ddfc-4c98-be81-1d34e660dd1a
 
 #### Arguments
 
-| Name     | Type                                                        | Required | Description                                                                           |
-|----------|-------------------------------------------------------------|----------|---------------------------------------------------------------------------------------|
-| `alg`    | `string`                                                    | Yes      | Algorithm name: `AES-GCM` or `AES-CBC`. Must specify same value as during encryption. |
-| `data`   | `string` (Hex)                                              | Yes      | Encrypted data.                                                                       |
-| `iv`     | `string` (Hex)                                              | Yes      | Initial vector. Must specify same value as during encryption.                         |
-| `key`    | `string` (Hex)                                              | Yes      | Your secret key. Must specify same value as during encryption.                        |
+| Name   | Type           | Required | Description                                                                           |
+| ------ | -------------- | -------- | ------------------------------------------------------------------------------------- |
+| `alg`  | `string`       | Yes      | Algorithm name: `AES-GCM` or `AES-CBC`. Must specify same value as during encryption. |
+| `data` | `string` (Hex) | Yes      | Encrypted data.                                                                       |
+| `iv`   | `string` (Hex) | Yes      | Initial vector. Must specify same value as during encryption.                         |
+| `key`  | `string` (Hex) | Yes      | Your secret key. Must specify same value as during encryption.                        |
 
 #### Return Value
 
 | Name        | Type         | Description     |
-|-------------|--------------|-----------------|
+| ----------- | ------------ | --------------- |
 | `plainData` | `Uint8Array` | Decrypted data. |
 
 ## Development
