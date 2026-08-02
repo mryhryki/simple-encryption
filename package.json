@@ -1,6 +1,6 @@
 {
   "name": "@mryhryki/simple-encryption",
-  "description": "Simple encryption/decryption library for Node.js/Deno/Browser.",
+  "description": "Simple encryption/decryption library for Node.js/Deno/Bun/Browser.",
   "version": "0.2.2",
   "license": "MIT",
   "main": "src/index.js",
