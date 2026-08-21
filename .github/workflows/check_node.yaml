@@ -32,7 +32,7 @@ jobs:
       - name: Show environment
         run: set -x; pwd; ls -la; node -v; npm -v;
       - name: Install
-        run: npm install
+        run: npm install --production
       - name: Pack tarball
         run: |
           npm run build
